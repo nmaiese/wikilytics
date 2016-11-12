@@ -1,14 +1,56 @@
+<!DOCTYPE html>
 <html>
-  <head>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="/static/css/bootstrap.css" rel="stylesheet" media="screen">
+    <link href="/static/css/bootstrap-theme.css" rel="stylesheet">
+    <link href="/static/css/effects.css" rel="stylesheet">
+
     {% if title %}
-    <title>{{ title }} - microblog</title>
+      <title>{{ title }} - microblog</title>
     {% else %}
-    <title>Welcome to microblog</title>
+      <title>Welcome to microblog</title>
     {% endif %}
-  </head>
+
+</head>
+
   <body>
-    <div>Microblog: <a href="/index">Home</a></div>
-    <hr>
-    {% block content %}{% endblock %}
+
+  {% include "navbar.html" %}
+
+
+
+            {% block content %}{% endblock %}
+
+
+    <!--<div class="container">-->
+        <!--<div class="row">-->
+            <!--<div class="col-sm-12 col-md-12">-->
+
+
+
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+
+
+
+    <script src="/static/js/jquery-3.1.1.min.js"></script>
+    <script src="/static/js/bootstrap.js"></script>
+    <script src="/static/js/effects.js"></script>
+    <script>
+         $(function() {
+        var pgurl = window.location.href.substr(window.location.href
+        .lastIndexOf("/")+1);
+        $("#myNav .container ul li a").each(function(){
+        if($(this).attr("href") == pgurl || $(this).attr("href") == '' )
+        $(this).addClass("active");
+     })
+});
+    </script>
   </body>
 </html>

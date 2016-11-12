@@ -2,9 +2,45 @@
 
 {% block content %}
 
-    <h1>Hi, {{ user.nickname }}!</h1>
-    {% for post in posts %}
-    <div><p>{{ post.author.nickname }} says: <b>{{ post.body }}</b></p></div>
-    {% endfor %}
+
+<div class="container">
+    <div class="jumbotron">
+        <h1>Wikilyitics</h1>
+        <p>Get and visualize page views of wikipedia articles</p>
+
+        <p></p><form id='buttonWithText' onSubmit={this.onSubmit}>
+        <div id='slider' class='collapsed'>
+            <input class='btn btn-success btn-lg start' type='button' id='toggle' value='Starts your search'>
+            <input type='text' id='input' tabindex='-1' placeholder='username' size=10>
+            <input class='btn btn-success btn-lg start' type='submit' id='get' tabindex='-1' value='get data'>
+        </div>
+    </form>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+
+
+            <h1>Hi, {{ user.nickname }}!</h1>
+            {% for post in posts %}
+            <div><p>{{ post.author.nickname }} says: <b>{{ post.body }}</b></p></div>
+            {% endfor %}
+
+
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-xs-12">
+            <footer>
+                <p>&copy; Copyright 2016</p>
+            </footer>
+        </div>
+    </div>
+</div>
+
 
 {% endblock %}
+
+
+
+
