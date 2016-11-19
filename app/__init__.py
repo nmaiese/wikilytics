@@ -5,4 +5,5 @@ app.config.from_object('config')
 
 
 from app import views
+from app import getdata
 

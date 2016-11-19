@@ -6,24 +6,40 @@
 <div class="container">
     <div class="jumbotron">
         <h1>Wikilyitics</h1>
-        <p>Get and visualize page views of wikipedia articles</p>
+        <p>Get data and visualize page views of wikipedia articles</p>
 
-        <p></p><form id='buttonWithText' onSubmit={this.onSubmit}>
+        <p></p><form id='buttonWithText' action='.' method='post' >
+
         <div id='slider' class='collapsed'>
+
             <input class='btn btn-success btn-lg start' type='button' id='toggle' value='Starts your search'>
-            <input type='text' id='input' tabindex='-1' placeholder='username' size=10>
+            <!--<input type='text' name='input' id='input' tabindex='-1' placeholder='username' size=10>-->
+            {{ form.name }}
+            {{ form.start(class="datepicker") }}
+            {{ form.end(class="datepicker") }}
+
             <input class='btn btn-success btn-lg start' type='submit' id='get' tabindex='-1' value='get data'>
+
         </div>
     </form>
     </div>
     <div class="row">
         <div class="col-md-12">
 
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                    {% for message in messages %}
+                        <div id="search-title"><h2>{{ message[1] }}</h2></div>
+                    {% endfor %}
 
-            <h1>Hi, {{ user.nickname }}!</h1>
-            {% for post in posts %}
-            <div><p>{{ post.author.nickname }} says: <b>{{ post.body }}</b></p></div>
-            {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+            <hr />
+
+            <div id="views-bar-chart"></div>
+            <div id="views-line-chart"></div>
+
 
 
         </div>
