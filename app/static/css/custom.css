@@ -1,0 +1,10 @@
+#search-title{
+    text-align: center;
+    width: 100%
+}
+
+
+#start, #end, #name {
+    margin: 0 30px 0 0;
+}
+
