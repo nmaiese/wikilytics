@@ -46,30 +46,29 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crossfilter/1.3.12/crossfilter.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dc/2.1.0-dev/dc.js"></script>
     <script src="/static/js/graph.js"></script>
-
+    <script src="/static/js/responsive.js"></script>
 
     <script>
     $( document ).ready(function() {
+        
+        data = '{{ data }}';
+        if(data){
+            data = data.replace(/u&#39;/g,'"')
+            data = data.replace(/&#39;/g,'"')
+            json = JSON.parse(data)
+            renderDashboardCharts(json);
+        }
+        
+        $( function() {
+            $( ".datepicker" ).datepicker();
+        } );
+    });
+    
 
-    data = '{{ data }}';
-
-    if(data){
-
-        data = data.replace(/u&#39;/g,'"')
-        data = data.replace(/&#39;/g,'"')
-        json = JSON.parse(data)
-        renderDashboardCharts(json);
-    }
-
-
-   })
-
-
-    </script>
-	<script>
-	$(function() {
-        $('.datepicker').datepicker({ dateFormat: 'dd-mm-yy' });
-	});
+    $(window).resize(function(){
+      setChartWidth();
+      dc.renderAll();
+    });
 	</script>
 
   </body>

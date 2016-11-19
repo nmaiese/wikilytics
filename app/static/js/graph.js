@@ -65,14 +65,16 @@ function renderDashboardCharts(data){
       .dimension(dateDim)
       .group(viewsByDate, "Views by day");
 
+    setChartWidth();
     dc.renderAll();
+    
 }
 
 
 
 function linechartAttribute(linechart){
   linechart
-  .width($('.col-md-12').width())
+  .width(null)
   .height(280)
   .margins({
       top: 15,
@@ -93,7 +95,7 @@ function linechartAttribute(linechart){
 
 function barchartAttribute(barchart){
   barchart
-  .width($('.col-md-12').width())
+  .width(null)
   .height(100)
   .margins({
       top: 15,

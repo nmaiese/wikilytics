@@ -2,9 +2,8 @@
 
 {% block content %}
 
-
-<div class="container">
-    <div class="jumbotron">
+<div class="jumbotron">
+    <div class="container">
         <h1>Wikilyitics</h1>
         <p>Get data and visualize page views of wikipedia articles</p>
 
@@ -23,8 +22,10 @@
         </div>
     </form>
     </div>
+</div>
+<div class="container">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-lg-12">
 
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
@@ -34,26 +35,26 @@
 
             {% endif %}
         {% endwith %}
-
-            <hr />
-
-            <div id="views-bar-chart"></div>
-            <div id="views-line-chart"></div>
-
-
-
-        </div>
+        
     </div>
-    <hr>
+            <hr />
     <div class="row">
-        <div class="col-xs-12">
-            <footer>
-                <p>&copy; Copyright 2016</p>
-            </footer>
-        </div>
+            <div class="col-md-12">
+                <div id="views-bar-chart" class="resizable-chart"></div>
+            </div>
+            <div class="col-md-12">
+                <div id="views-line-chart" class="resizable-chart"></div>
+            </div>
+
+
     </div>
 </div>
-
+</div>
+<footer>
+    <div class="container">
+    <p>&copy; Copyright 2016</p>
+    </div>
+</footer>
 
 {% endblock %}
 
