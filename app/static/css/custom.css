@@ -4,8 +4,21 @@
 }
 
 
-#start, #end, #name {
+#start, #end, #name, #lang {
     margin: 0 30px 0 0;
+}
+
+input{  
+  border: 0px solid;
+  border-radius: 3px;
+  padding: 0px 10px;
+
+}
+
+select{
+  border: 0px solid;
+  padding: 0px 10px;
+  background: white;
 }
 
 footer{
@@ -13,5 +26,15 @@ footer{
   height: 70px;
   padding: 20px 10px;
   background-image: linear-gradient(to bottom, #3c3c3c 0%, #222 100%);
+
+}
+
+
+@media(max-width: 991px){
+  #start, #end, #name, #lang {
+    margin: 0 30px 0 0;
+    width: 100%;
+}
+
 
 }
