@@ -17,8 +17,12 @@
   margin-right: 0px;
 }
 
-#start, #end, #name, #lang, #get {
+#datarangepicker, #name, #lang, #get {
   height: inherit;
+}
+
+#datarangepicker, #lang{
+  min-width: 200px;
 }
 
 
@@ -70,7 +74,7 @@ footer{
 
 
 @media(max-width: 991px){
-  #start, #end, #name, #lang {
+  #datarangepicker, #name, #lang {
     width: 100%;
 
   }
@@ -93,7 +97,7 @@ footer{
 
 
 @media(max-width: 767px){
-  #start, #end, #name, #lang {
+  #datarangepicker, #name, #lang {
     width: 100%;
     text-align: center;
     text-align-last: center;

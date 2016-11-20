@@ -49,6 +49,7 @@
             data = data.replace(/u&#39;/g,'"')
             data = data.replace(/&#39;/g,'"')
             json = JSON.parse(data)
+            console.log(json)
             renderDashboardCharts(json);
         }
         
@@ -63,11 +64,16 @@
       dc.renderAll();
     });
 
+    var start = moment().subtract(29, 'days');
+    var end = moment();
+
     function cb(start, end) {
-    $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+        $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
     }
 
     $('input#datarangepicker').daterangepicker({
+        startDate: start,
+        endDate: end,
         ranges: {
            'Today': [moment(), moment()],
            'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],

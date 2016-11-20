@@ -8,21 +8,20 @@ def getViews(query):
         data = []
         for q in query['query']:
 
-            base = 'https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/' + str(query['lang']) + '.wikipedia/all-access/all-agents'
+            languages = ('en', 'English'), ('it', 'Italian'), ('de', 'Deutsch'), ('nl','Nederlands')
+            
+            for lang in languages:
+                
+                base = 'https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/' + lang[0] + '.wikipedia/all-access/all-agents'
 
-            url = "/".join([base, q, 'daily', query['start']+'00', query['end']+'00'])
+                url = "/".join([base, q, 'daily', query['start']+'00', query['end']+'00'])
 
-            response = requests.get(url)
-            stats = response.json()['items']
-            results = []
-            for s in stats:
-                data.append({'name': q,
-                             'day': s['timestamp'][:-2],
-                             'views': s['views'] })
-                data += results
+                response = requests.get(url)
+                stats = response.json()['items']
+                data += stats
 
 
-        return stats
+        return data
 
     except(KeyError):
         print "No data"

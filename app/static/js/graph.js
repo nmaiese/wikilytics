@@ -8,7 +8,7 @@ function formatCrossifilter(data){
 
       var date = d.timestamp.substr(0,8);
       d.timestamp = dateFormat.parse(date);
-
+      d.project = d.project.replace('.wikipedia', '');
       d.views = +d.views;
     });
 
@@ -32,16 +32,18 @@ function renderDashboardCharts(data){
 
     var dateDim = createDimension(ndx, "timestamp");
     var viewsDim = createDimension(ndx, "views");
+    var langDim = createDimension(ndx, "project")
 
     var minDate = dateDim.bottom(1)[0].timestamp;
     var maxDate = dateDim.top(1)[0].timestamp;
 
-
     var viewsByDate = dateDim.group().reduceSum(function(d) {
-        return d.views;
+      return d.views;
     });
 
-
+    var viewsByLang = langDim.group().reduceSum(function(d){
+      return d.views
+    })
 
     //Define values (to be used in charts)
 
@@ -49,6 +51,8 @@ function renderDashboardCharts(data){
     var viewsLineChart = dc.lineChart('#views-line-chart');
 
     var viewsBarChart = dc.barChart('#views-bar-chart');
+    var langPieChart = dc.pieChart('#langs-pie-chart');
+
 
 //    Add Basic Attribute for line charts
     linechartAttribute(viewsLineChart);
@@ -64,6 +68,13 @@ function renderDashboardCharts(data){
       .x(d3.time.scale().domain([minDate, maxDate]))
       .dimension(dateDim)
       .group(viewsByDate, "Views by day");
+
+    langPieChart
+      .radius(120)
+      .height(280)
+      .dimension(langDim)
+      .group(viewsByLang);
+
 
     setChartWidth();
     dc.renderAll();
