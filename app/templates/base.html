@@ -28,17 +28,6 @@
             {% block content %}{% endblock %}
 
 
-    <!--<div class="container">-->
-        <!--<div class="row">-->
-            <!--<div class="col-sm-12 col-md-12">-->
-
-
-
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
-
-
 
     <script src="/static/js/bootstrap.js"></script>
     <script src="/static/js/effects.js"></script>
@@ -52,7 +41,7 @@
     $( document ).ready(function() {
         
         data = '{{ data }}';
-        if(data){
+        if(data && data != "None") {
             data = data.replace(/u&#39;/g,'"')
             data = data.replace(/&#39;/g,'"')
             json = JSON.parse(data)
