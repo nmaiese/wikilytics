@@ -7,20 +7,23 @@
         <h1>Wikilyitics</h1>
         <p>Get data and visualize page views of wikipedia articles</p>
 
-        <p></p><form id='buttonWithText' action='.' method='post' >
-
-        <div id='slider' class='collapsed'>
-
-            <input class='btn btn-success btn-lg start' type='button' id='toggle' value='Starts your search'>
-            <!--<input type='text' name='input' id='input' tabindex='-1' placeholder='username' size=10>-->
+        <p></p><form class='form-inline' action='.' method='post' >
+        <div class='form-group'>
             {{ form.name }}
-            {{ form.start(class="datepicker") }}
-            {{ form.end(class="datepicker") }}
-            {{ form.lang(placeholder="--select--") }}
-          
-            <input class='btn btn-success btn-lg start' type='submit' id='get' tabindex='-1' value='get data'>
-
         </div>
+        <div class='form-group'>
+            {{ form.start(class="datepicker") }}
+        </div>
+        <div class='form-group'>
+            {{ form.end(class="datepicker") }}
+        </div>
+        <div class='form-group'>
+            {{ form.lang(placeholder="--select--") }}
+        </div>
+        <div class='form-group' id='last-form-group'>
+            <input class='btn btn-success btn-lg start' type='submit' id='get' tabindex='-1' value='get data'>
+        </div>
+
     </form>
     </div>
 </div>
