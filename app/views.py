@@ -14,7 +14,6 @@ from flask_admin.form.widgets import DatePickerWidget
 
 class ReusableForm(Form):
     name = TextField(default='username', validators=[validators.required()])
-    lang = SelectField('Language', choices=[('en', 'English'), ('it', 'Italian'), ('de', 'Deutsch'), ('nl','Nederlands')], validators=[validators.required()])
     date = TextField('Start', default='Select date', validators=[validators.required()])
 
 
@@ -37,8 +36,6 @@ def index():
 
             name = request.form['name']
 
-            lang = request.form['lang']
-
             s = start.replace("/", "")
             e = end.replace("/", "")
 
@@ -47,10 +44,11 @@ def index():
             
             flash(name)
 
-            data = getdata.launchQuery(name, lang, startDate, endDate)
+            data, errors = getdata.launchQuery(name, startDate, endDate)
 
             if not data:
                 flash("No data, retry")
+                flash(errors)
 
 
 

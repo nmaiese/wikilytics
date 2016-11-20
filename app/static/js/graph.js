@@ -1,3 +1,6 @@
+var dateDim
+var viewsByArticle
+
 function formatCrossifilter(data){
 
     var dateFormat = d3.time.format('%Y%m%d');
@@ -10,6 +13,7 @@ function formatCrossifilter(data){
       d.timestamp = dateFormat.parse(date);
       d.project = d.project.replace('.wikipedia', '');
       d.views = +d.views;
+      d.article = d.article.replace(/_/g, ' ')
     });
 
     ndx = crossfilter(data);
@@ -30,12 +34,15 @@ function renderDashboardCharts(data){
 
     var ndx = formatCrossifilter(data);
 
-    var dateDim = createDimension(ndx, "timestamp");
+    dateDim = createDimension(ndx, "timestamp");
     var viewsDim = createDimension(ndx, "views");
     var langDim = createDimension(ndx, "project")
+    var articleDim = createDimension(ndx, "article")
 
     var minDate = dateDim.bottom(1)[0].timestamp;
     var maxDate = dateDim.top(1)[0].timestamp;
+
+
 
     var viewsByDate = dateDim.group().reduceSum(function(d) {
       return d.views;
@@ -45,14 +52,57 @@ function renderDashboardCharts(data){
       return d.views
     })
 
+    viewsByArticle = articleDim.group().reduceSum(function(d){
+      return d.views
+    })
+
+
+
+    // test = dateDim
+
+
+    // var dayViewsByArticle = dateDim.group().reduce(      
+    //   function (d, v) {
+    //     (viewsByArticle.top(Infinity)).forEach(function(p){
+    //       if (v.article == p.key){
+    //         console.log(d)
+    //         console.log(p.key.replace(" ","")+"_views")
+    //         d.views = v.views
+
+    //         d[p.key.replace(" ","")+"_views"] += v.views
+    //         return d
+    //       }
+    //     })
+    //   },
+
+    //   function (d, v) {
+    //     (viewsByArticle.top(Infinity)).forEach(function(p){
+    //       if (v.article == p.key){
+    //         d[p.key.replace(" ","")+"_views"] += v.views
+    //         return d
+    //       }
+    //     })
+    //   },
+
+    //   function () {
+    //     viewsByArticle.top(Infinity).forEach(function(p){
+    //       returned = {} 
+    //         returned += eval(p.key.replace(" ","")+":0")
+    //       })
+    //     return returned 
+        
+    //   }
+    // );
+
+
     //Define values (to be used in charts)
 
     //Inizializate Charts
-    var viewsLineChart = dc.lineChart('#views-line-chart');
 
+    var viewsLineChart = dc.lineChart('#views-line-chart');
     var viewsBarChart = dc.barChart('#views-bar-chart');
     var langPieChart = dc.pieChart('#langs-pie-chart');
-
+    var articleRowChart = dc.rowChart('#article-row-chart');
 
 //    Add Basic Attribute for line charts
     linechartAttribute(viewsLineChart);
@@ -62,6 +112,7 @@ function renderDashboardCharts(data){
       .x(d3.time.scale().domain([minDate, maxDate]))
       .dimension(dateDim)
       .group(viewsByDate, 'Views by day')
+      //.stack(dayViewsByArticle, function(d){console.log(d)})
       .rangeChart(viewsBarChart);
 
     viewsBarChart
@@ -74,6 +125,19 @@ function renderDashboardCharts(data){
       .height(280)
       .dimension(langDim)
       .group(viewsByLang);
+
+    articleRowChart
+      .width(null)
+      .height(280)
+      .margins({
+        top: 15,
+        right: 50,
+        bottom: 40,
+        left: 60
+      })
+      .dimension(articleDim)
+      .group(viewsByArticle)
+      .elasticX(true);
 
 
     setChartWidth();
