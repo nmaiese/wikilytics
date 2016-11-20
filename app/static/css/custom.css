@@ -37,11 +37,27 @@ select{
 
 
 
-#get{
+input#get{
   height: 35px;
   padding: 0 10px;
   font-size: 14px;
+  font-weight: 300;
+  color:#ffffff;
+  background-color: #009ac9;
+  -webkit-border-radius: 5px;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+
 }
+
+
+input#get:hover {
+  background-color: #ffffff;
+  color: #009ac9;
+  border-color: #009ac9;
+}
+
 
 
 footer{
