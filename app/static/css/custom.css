@@ -41,7 +41,6 @@ input#get{
   height: 35px;
   padding: 0 10px;
   font-size: 14px;
-  font-weight: 300;
   color:#ffffff;
   background-color: #009ac9;
   -webkit-border-radius: 5px;
@@ -89,9 +88,15 @@ footer{
 }
 
 
+
+
+
+
 @media(max-width: 767px){
   #start, #end, #name, #lang {
     width: 100%;
+    text-align: center;
+    text-align-last: center;
   }
 
   .form-inline .form-group{
