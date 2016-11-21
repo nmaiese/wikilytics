@@ -56,7 +56,7 @@ def index():
 
             flash('All the form fields are required. ')
 
-    return render_template('index.html', form=form, data=data)
+    return render_template('index.html', form=form, data=data, query=name)
 
 
 

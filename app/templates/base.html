@@ -15,6 +15,7 @@
     <link href="/static/css/custom.css" rel="stylesheet">
     <script src="/static/js/jquery-3.1.1.min.js"></script>
     <script src="/static/js/jquery-ui.js"></script>
+    <link href="/static/css/d3-tooltips.css" rel="stylesheet">
 
 
 
@@ -38,18 +39,23 @@
         </script>
     <script src="/static/js/effects.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dc/2.1.0-dev/dc.js"></script>
+    <script src="/static/js/d3-tooltips.js"></script>
+
     <script src="/static/js/graph.js"></script>
     <script src="/static/js/responsive.js"></script>
 
     <script>
+
     $( document ).ready(function() {
         
-        data = '{{ data }}';
+        data = '{{ data }}'
+        query =  '{{ query }}'    
+
         if(data && data != "None") {
             data = data.replace(/u&#39;/g,'"')
             data = data.replace(/&#39;/g,'"')
             json = JSON.parse(data)
-            renderDashboardCharts(json);
+            renderDashboardCharts(json, query);
         }
         
         $( function() {

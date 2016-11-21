@@ -19,6 +19,10 @@ def getViews(query):
                 response = requests.get(url)
                 if response.json().has_key('items'):
                     stats = response.json()['items']
+                    for s in stats:
+                        if s.has_key('views'):
+                           s[q.replace(' ','')+'_views'] = s['views']
+
                     data += stats
 
         return data, response.content

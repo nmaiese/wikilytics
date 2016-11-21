@@ -1,20 +1,60 @@
 var dateDim
 var viewsByArticle
+var viewsLineChart
 
-function formatCrossifilter(data){
+
+var it_IT = {
+
+    "decimal": ",",
+    "thousands": ".",
+    "grouping": [3],
+    "currency": ["€", ""],
+    "dateTime": "%a %b %e %X %Y",
+    "date": "%d/%m/%Y",
+    "time": "%H:%M:%S",
+    "periods": ["AM", "PM"],
+    "days": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+    "shortDays": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+    "months": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+    "shortMonths": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+}
+
+var IT = d3.locale(it_IT);
+var numberFormat = IT.numberFormat(",.f")
+var numberFormatComma = IT.numberFormat(",.2f")
+
+
+function formatCrossifilter(data, query){
+
+
 
     var dateFormat = d3.time.format('%Y%m%d');
+    
 
+    query = query.replace(/ /g,'')
+    query = query.split(',')
 
-
+    
     data.forEach(function (d) {
 
       var date = d.timestamp.substr(0,8);
+
       d.timestamp = dateFormat.parse(date);
       d.project = d.project.replace('.wikipedia', '');
       d.views = +d.views;
       d.article = d.article.replace(/_/g, ' ')
+
+      query.forEach(function(k){
+        if (!(k+"_views" in d)){
+          d[k+"_views"] = 0;
+        }
+      })
+
+      // console.log(d);
     });
+
+
+
 
     ndx = crossfilter(data);
     return ndx;
@@ -30,9 +70,11 @@ function createDimension(ndx, dimension){
 
 
 
-function renderDashboardCharts(data){
+function renderDashboardCharts(data, query){
 
-    var ndx = formatCrossifilter(data);
+
+
+    var ndx = formatCrossifilter(data, query);
 
     dateDim = createDimension(ndx, "timestamp");
     var viewsDim = createDimension(ndx, "views");
@@ -49,57 +91,34 @@ function renderDashboardCharts(data){
     });
 
     var viewsByLang = langDim.group().reduceSum(function(d){
-      return d.views
-    })
+      return d.views;
+    });
 
     viewsByArticle = articleDim.group().reduceSum(function(d){
-      return d.views
+      return d.views;
+    });
+
+
+    articles = viewsByArticle.top(Infinity)
+    articles_views_key = []
+    articles.forEach(function(d){
+      articles_views_key.push(d.key.replace(/ /g, '')+'_views')
     })
 
-
-
-    // test = dateDim
-
-
-    // var dayViewsByArticle = dateDim.group().reduce(      
-    //   function (d, v) {
-    //     (viewsByArticle.top(Infinity)).forEach(function(p){
-    //       if (v.article == p.key){
-    //         console.log(d)
-    //         console.log(p.key.replace(" ","")+"_views")
-    //         d.views = v.views
-
-    //         d[p.key.replace(" ","")+"_views"] += v.views
-    //         return d
-    //       }
-    //     })
-    //   },
-
-    //   function (d, v) {
-    //     (viewsByArticle.top(Infinity)).forEach(function(p){
-    //       if (v.article == p.key){
-    //         d[p.key.replace(" ","")+"_views"] += v.views
-    //         return d
-    //       }
-    //     })
-    //   },
-
-    //   function () {
-    //     viewsByArticle.top(Infinity).forEach(function(p){
-    //       returned = {} 
-    //         returned += eval(p.key.replace(" ","")+":0")
-    //       })
-    //     return returned 
-        
-    //   }
-    // );
+    articles_views_key.forEach(function(k){
+      this[k+'_byDate'] = dateDim.group().reduceSum(function(d) {
+        if (k in d){
+          return d[k];
+        }
+      })  
+    });
 
 
     //Define values (to be used in charts)
 
     //Inizializate Charts
 
-    var viewsLineChart = dc.lineChart('#views-line-chart');
+    viewsLineChart = dc.lineChart('#views-line-chart');
     var viewsBarChart = dc.barChart('#views-bar-chart');
     var langPieChart = dc.pieChart('#langs-pie-chart');
     var articleRowChart = dc.rowChart('#article-row-chart');
@@ -110,10 +129,24 @@ function renderDashboardCharts(data){
 
     viewsLineChart
       .x(d3.time.scale().domain([minDate, maxDate]))
-      .dimension(dateDim)
-      .group(viewsByDate, 'Views by day')
-      //.stack(dayViewsByArticle, function(d){console.log(d)})
-      .rangeChart(viewsBarChart);
+      .dimension(dateDim);
+      
+      
+      if (articles_views_key.length > 1){
+        for(var i =0; i < articles_views_key.length ;i++){
+          if (i==0){
+            viewsLineChart.group(this[articles_views_key[i] +'_byDate'], articles[i].key)
+          }
+          else{
+            viewsLineChart.stack(this[articles_views_key[i] +'_byDate'], articles[i].key)
+          }
+        }
+      }
+      viewsLineChart.rangeChart(viewsBarChart)
+      .legend(dc.legend().x(60).y(265).autoItemWidth(true).gap(10).horizontal(true));
+
+
+      
 
     viewsBarChart
       .x(d3.time.scale().domain([minDate, maxDate]))
@@ -140,10 +173,18 @@ function renderDashboardCharts(data){
       .elasticX(true);
 
 
+
+
+
+
     setChartWidth();
     dc.renderAll();
+    drawtips();
     
 }
+
+
+
 
 
 
@@ -179,7 +220,57 @@ function barchartAttribute(barchart){
       left: 60
   })
   .centerBar(true)
+  .elasticY(true)
   .xUnits(d3.time.days)
   .yAxis().ticks(0);
 
+}
+
+
+
+
+// Draw Tips on Graphs
+function drawtips() {
+    var svg = d3.selectAll(".d3-tip-label-linechart").select("svg");
+    var tip = d3.tip()
+        .attr('class', 'd3-tip')
+        .offset([-10, 0])
+        .html(function(d) {
+          return composeLinechartTooltip(d);
+        });
+    svg.call(tip);
+    svg.selectAll(".dot")
+        .on('mousemove', tip.show)
+        .on('mouseout', tip.hide)
+
+    var svg = d3.selectAll(".d3-tip-label-barchart").select("svg");
+    var tip = d3.tip()
+        .attr('class', 'd3-tip')
+        .offset([-10, 0])
+        .html(function(d) {
+          return composeBarchartTooltip(d);
+        });
+    svg.call(tip);
+    svg.selectAll(".bar")
+        .on('mousemove', tip.show)
+        .on('mouseout', tip.hide)
+}
+
+
+function composeLinechartTooltip(d){
+  return "<strong>" + d.layer + "</strong> <br/> " +
+   numberFormat(d.data.value) + "<br/>" +
+   formatDate(d.data.key)
+
+}
+
+function composeBarchartTooltip(d){
+  return "<strong>" + d.layer + "</strong> <br/> " +
+   numberFormat(d.y) + "<br/>" +
+   formatDate(d.data.key)
+}
+
+function formatDate(data){
+  d3Date = d3.time.format("%d/%m/%Y")
+  return d3Date(data)
 }
