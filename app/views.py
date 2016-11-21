@@ -77,10 +77,8 @@ def trends():
     query_list = ''
 
     for d in data[0]: 
-        if d['rank'] < 11:
-            if (d['article'] != 'Pagina_Principale' and d['article'] != 'Pagina_Principale'):
-                flash(d['article'])
-                query_list += ((d['article'])+',')
+        if d['rank'] < 4:
+            query_list += ((d['article'])+',')
 
     query_list = query_list[:-1]
     form.name = query_list
