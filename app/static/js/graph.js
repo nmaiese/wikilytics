@@ -142,6 +142,10 @@ function renderDashboardCharts(data, query){
           }
         }
       }
+      else{
+        viewsLineChart.group(this[articles_views_key[0] +'_byDate'], articles[0].key)
+
+      }
       viewsLineChart.rangeChart(viewsBarChart)
       .legend(dc.legend().x(60).y(265).autoItemWidth(true).gap(10).horizontal(true));
 

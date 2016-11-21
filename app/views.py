@@ -28,6 +28,7 @@ def index():
 
     print form.errors
     data = None
+    name = None
     if request.method == 'POST':
 
         if form.validate():
