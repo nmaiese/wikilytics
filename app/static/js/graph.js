@@ -14,6 +14,10 @@ function formatCrossifilter(data){
       d.project = d.project.replace('.wikipedia', '');
       d.views = +d.views;
       d.article = d.article.replace(/_/g, ' ')
+      d[d.article+'_views'] = +d[d.article+'_views'];
+
+      console.log(d);
+
     });
 
     ndx = crossfilter(data);
@@ -144,6 +148,29 @@ function renderDashboardCharts(data){
     dc.renderAll();
     
 }
+
+// articles = viewsByArticle.top(Infinity)
+
+// if (articles.length() > 1){
+//     p.replace(/ /g,"")
+//   viewsByArticle.top(Infinity).forEach(function(p){
+
+//   }
+
+// };
+
+
+
+
+//     ["fb_page_fans", "tw_followers", "in_followers", "fb_engagement", "community"].forEach(function(k){
+//       this[toCamelCase(k+'_by_date')] = dateDim.group().reduceSum(function(d) {
+//         return d[k];
+//       });
+//       this[toCamelCase(k+'_abs_by_date')] = dateDim.group().reduceSum(function(d) {
+//         return d[k+'_abs'];
+//       })
+//     });
+
 
 
 
