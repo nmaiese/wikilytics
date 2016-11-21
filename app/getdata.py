@@ -1,6 +1,6 @@
 import requests
 import json
-from datetime import datetime
+import datetime 
 from flask import flash
 
 def getViews(query):
@@ -38,20 +38,29 @@ def saveJson(data, filename="data"):
     f.write(json.dumps(data))
 
 
-def getTrends(day=datetime.date.today()):
-
-    langs =('en', 'English'), ('it', 'Italian'), ('de', 'Deutsch'), ('nl','Nederlands'), ('sv','Swedish'),('ceb','Cebuano'),('de','German'),('fr', 'French'),('ru', 'Russian'),('es','Spanish')
+def getTrends(day=datetime.date.today()-datetime.timedelta(days=1), lang='en'):
     
     try:
         data = []
-        
-        for lang in langs:
-            url = 'https://wikimedia.org/api/rest_v1/metrics/pageviews/top/'+langs+'.wikipedia/all-access/'+day.years+'/'+day.month+'/'+day.day
-
+        url = 'https://wikimedia.org/api/rest_v1/metrics/pageviews/top/'+str(lang)+'.wikipedia/all-access/'+str(day.year)+'/'+str(day.month)+'/'+str(day.day)
+        print url
+        response = requests.get(url)
+        if response.json().has_key('items'):
+            stats = response.json()['items']
+            for s in stats[0]['articles']:
+                s['project'] = stats[0]['project']
+            data += stats[0]['articles']
+        else:
+            day=datetime.date.today()-datetime.timedelta(days=2)
+            url = 'https://wikimedia.org/api/rest_v1/metrics/pageviews/top/'+str(lang)+'.wikipedia/all-access/'+str(day.year)+'/'+str(day.month)+'/'+str(day.day)
             response = requests.get(url)
             if response.json().has_key('items'):
                 stats = response.json()['items']
-                data += stats
+                for s in stats[0]['articles']:
+                    s['project'] = stats[0]['project']
+                data += stats[0]['articles']
+
+
 
         return data, response.content
 
@@ -67,6 +76,7 @@ def launchQuery(query, start, end):
     # query = 'Donald Trump'
 
     query = query.split(",")
+
 
     for i in range(0, len(query)): 
         if query[i][0] == ' ':

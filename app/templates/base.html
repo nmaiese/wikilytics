@@ -52,8 +52,19 @@
         query =  '{{ query }}'    
 
         if(data && data != "None") {
+
+            data = data.replace(/l&#39/g,'')
             data = data.replace(/u&#39;/g,'"')
             data = data.replace(/&#39;/g,'"')
+            data = data.replace(/u&#34;/g,'"')
+            data = data.replace(/&#34;/g,'"')
+        
+
+
+            // data = data.replace(/&#34;/g,"")
+            // data = data.replace(/00", u/g,'00",')
+
+
             json = JSON.parse(data)
             renderDashboardCharts(json, query);
         }
