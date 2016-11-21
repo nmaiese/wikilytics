@@ -38,6 +38,26 @@ def saveJson(data, filename="data"):
     f.write(json.dumps(data))
 
 
+def getTrends(day=datetime.date.today()):
+
+    langs =('en', 'English'), ('it', 'Italian'), ('de', 'Deutsch'), ('nl','Nederlands'), ('sv','Swedish'),('ceb','Cebuano'),('de','German'),('fr', 'French'),('ru', 'Russian'),('es','Spanish')
+    
+    try:
+        data = []
+        
+        for lang in langs:
+            url = 'https://wikimedia.org/api/rest_v1/metrics/pageviews/top/'+langs+'.wikipedia/all-access/'+day.years+'/'+day.month+'/'+day.day
+
+            response = requests.get(url)
+            if response.json().has_key('items'):
+                stats = response.json()['items']
+                data += stats
+
+        return data, response.content
+
+    except(KeyError):
+        print "No data"
+        return None, response.content        
 
 
 def launchQuery(query, start, end):
