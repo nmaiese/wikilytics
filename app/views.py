@@ -75,21 +75,28 @@ def trends():
 
     data = getdata.getTrends(lang=lang)
     query_list = ''
+    query_title = ''
 
-    for d in data[0]: 
-        if d['rank'] < 4:
-            query_list += ((d['article'])+',')
+    i = 0
+    for d in data[0]:
+        query_list += ((d['article'])+',')
+        query_title += ((d['article'])+'\n')
+
+        i += 1
+        if i > 4: break
 
     query_list = query_list[:-1]
+    query_title = query_title[:-1]
+
     form.name = query_list
     
     end = datetime.datetime.today() 
-    start = end - datetime.timedelta(days=60)
+    start = end - datetime.timedelta(days=10)
 
     startDate = str('%02d' % start.year)+str('%02d' % start.month)+str('%02d' % start.day)
     endDate =  str('%02d' % end.year)+str('%02d' % end.month)+str('%02d' % end.day)
     
-    flash(query_list)
+    flash(query_title)
 
     data, errors = getdata.launchQuery(query_list, startDate, endDate)
     if not data:
