@@ -1,7 +1,9 @@
+beautifulsoup4==4.5.1
 click==6.6
 decorator==4.0.10
 Flask==0.11.1
 Flask-Admin==1.4.2
+gunicorn==19.6.0
 infinity==1.4
 intervals==0.8.0
 itsdangerous==0.24

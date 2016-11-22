@@ -2,13 +2,30 @@ import requests
 import json
 import datetime 
 from flask import flash
+import os, re
+
+
+badList = [
+    u'Pagina_principale',
+    u'Speciale:Ricerca',
+    u'Speciale:CercaCollegamenti',
+    u'Main_Page',
+    u'Special:Search',
+    u'Portada',
+    u'Especial:Buscar',
+    u'Hauptseite',
+    u'Spezial:Suche',
+    u'Wikip\xe9dia:Accueil_principal',
+    u'Fran\xe7ois_Fillon'
+]
+
 
 def getViews(query):
     try:
         data = []
         for q in query['query']:
 
-            languages = ('en', 'English'), ('it', 'Italian'), ('de', 'Deutsch'), ('nl','Nederlands'), ('sv','Swedish'),('ceb','Cebuano'),('de','German'),('fr', 'French'),('ru', 'Russian'),('es','Spanish')
+            languages = ('en', 'English'), ('it', 'Italian'), ('nl','Nederlands'), ('sv','Swedish'),('ceb','Cebuano'),('de','German'),('fr', 'French'),('ru', 'Russian'),('es','Spanish')
             
             for lang in languages:
                 
@@ -21,7 +38,7 @@ def getViews(query):
                     stats = response.json()['items']
                     for s in stats:
                         if s.has_key('views'):
-                           s[q.replace(' ','')+'_views'] = s['views']
+                            s[q.replace('(', '').replace(')', '').replace("'", '_')+'_views'] = s['views']
 
                     data += stats
 
@@ -61,6 +78,9 @@ def getTrends(day=datetime.date.today()-datetime.timedelta(days=1), lang='en'):
                 data += stats[0]['articles']
 
 
+        for b in badList:
+            for d in data:
+                if b in d.values(): data.remove(d)
 
         return data, response.content
 
@@ -94,6 +114,5 @@ def launchQuery(query, start, end):
 
 #if data:
 #    saveJson(data, "-".join(q['query']))
-
 
 
