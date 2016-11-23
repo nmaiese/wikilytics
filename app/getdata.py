@@ -38,7 +38,7 @@ def getViews(query):
                     stats = response.json()['items']
                     for s in stats:
                         if s.has_key('views'):
-                            s[q.replace('(', '').replace(')', '').replace("'", '_')+'_views'] = s['views']
+                            s[q.replace('(', '').replace(')', '').replace("'", '_').replace(" ", '_')+'_views'] = s['views']
 
                     data += stats
 
@@ -82,11 +82,11 @@ def getTrends(day=datetime.date.today()-datetime.timedelta(days=1), lang='en'):
             for d in data:
                 if b in d.values(): data.remove(d)
 
-        return data, response.content
+        return data, day, response.content
 
     except(KeyError):
         print "No data"
-        return None, response.content        
+        return None, day ,response.content
 
 
 def launchQuery(query, start, end):
@@ -114,5 +114,6 @@ def launchQuery(query, start, end):
 
 #if data:
 #    saveJson(data, "-".join(q['query']))
+
 
 

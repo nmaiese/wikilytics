@@ -57,7 +57,6 @@ function formatCrossifilter(data, query){
         }
       })
 
-      // console.log(d);
     });
 
 
@@ -109,13 +108,15 @@ function renderDashboardCharts(data, query){
     articles = viewsByArticle.top(Infinity)
     articles_views_key = []
     articles.forEach(function(d){
-      articles_views_key.push(d.key.replace(/ /g, '')+'_views')
+      articles_views_key.push(d.key.replace(/ /g, '_')+'_views')
     })
 
     articles_views_key.forEach(function(k){
-      this[k+'_byDate'] = dateDim.group().reduceSum(function(d) {
+      this[k.replace(/ /g, '_')+'_byDate'] = dateDim.group().reduceSum(function(d) {
         if (k in d){
+
           return d[k];
+
         }
       })  
     });
@@ -143,11 +144,9 @@ function renderDashboardCharts(data, query){
         for(var i =0; i < articles_views_key.length ;i++){
           if (i==0){
             viewsLineChart.group(this[articles_views_key[i] +'_byDate'], articles[i].key)
-            console.log('Append to group '+articles[i].key)
           }
           else{
             viewsLineChart.stack(this[articles_views_key[i] +'_byDate'], articles[i].key)
-            console.log('Append to stack '+articles[i].key)
           }
         }
       }
@@ -155,7 +154,8 @@ function renderDashboardCharts(data, query){
         viewsLineChart.group(this[articles_views_key[0] +'_byDate'], articles[0].key)
       }
       viewsLineChart.rangeChart(viewsBarChart)
-      .legend(dc.legend().x(60).y(265).autoItemWidth(true).gap(10).horizontal(true));
+//      .legend(dc.legend().x(60).y(265).autoItemWidth(true).gap(10).horizontal(true));
+      .legend(dc.legend().x(70).y(30).autoItemWidth(true).gap(10));
 
 
       
@@ -163,10 +163,8 @@ function renderDashboardCharts(data, query){
     viewsBarChart
       .x(d3.time.scale().domain([minDate, maxDate]))
       .dimension(dateDim)
-      .group(viewsByDate, "Views by day")
-      .on('filtered',function(){
-        drawtips()
-      });
+      .group(viewsByDate, "Views by day");
+
 
     langPieChart
       .radius(120)
@@ -195,7 +193,7 @@ function renderDashboardCharts(data, query){
     setChartWidth();
     dc.renderAll();
     drawtips();
-    
+
 }
 
 
@@ -246,6 +244,7 @@ function barchartAttribute(barchart){
 
 // Draw Tips on Graphs
 function drawtips() {
+    cosole.log('drawtips')
     var svg = d3.selectAll(".d3-tip-label-linechart").select("svg");
     var tip = d3.tip()
         .attr('class', 'd3-tip')
