@@ -73,17 +73,24 @@ def trends():
     supported_languages = ['en','it','de','nl','sv','ceb','de','fr','ru','es']
     lang = request.accept_languages.best_match(supported_languages)
 
-    data = getdata.getTrends(lang=lang)
+    trends = getdata.getTrends(lang=lang)
+    
     query_list = ''
     query_title = ''
+    today = datetime.date.today()
+    timestamp = str('%02d' % today.year) + str('%02d' % today.month) + str('%02d' % today.day) + '00'
+    toappend = []
 
     i = 0
-    for d in data[0]:
+    for d in trends[0]:
         query_list += ((d['article'])+',')
         query_title += ((d['article'])+'\n')
 
+        toappend += [{u'access': u'all-access', u'views': d['views'], u'timestamp': timestamp, u'agent': u'all-agents', u'project': lang+'.wikipedia', d['article']+'_views': d['views'], u'granularity': u'daily', u'article': d['article']}]
+
         i += 1
         if i > 4: break
+
 
     query_list = query_list[:-1]
     query_title = query_title[:-1]
@@ -102,7 +109,7 @@ def trends():
     if not data:
         flash("No data, retry")
         flash(errors)
-
+    data += toappend
 
     return render_template('index.html',form=form, data=data, query=query_list)
 
