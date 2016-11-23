@@ -2,8 +2,8 @@
 {% set active_page = "index" %}
 
 {% set navigation_bar = [
-('/', 'index', 'Index'),
-('/about/', 'about', 'About')
+('/', 'home', 'Home'),
+('/trends', 'trends', 'Trends')
 ] -%}
 
 {% set active_page = active_page|default('index') -%}
@@ -33,7 +33,11 @@
                 </li>
                 {% endfor %}
             </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <button id="reset-all" class="rnav-btn" onclick="javascript:dc.filterAll(); dc.renderAll();drawtips();">Reset Me</button>
+            </ul>
         </div>
+
     </div>
 </nav>
 

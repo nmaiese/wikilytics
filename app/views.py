@@ -73,20 +73,26 @@ def trends():
     supported_languages = ['en','it','de','nl','sv','ceb','de','fr','ru','es']
     lang = request.accept_languages.best_match(supported_languages)
 
-    data = getdata.getTrends(lang=lang)
+    trends, day, errors = getdata.getTrends(lang=lang)
+
     query_list = ''
     query_title = ''
+    timestamp = str('%02d' % day.year) + str('%02d' % day.month) + str('%02d' % day.day) + '00'
+    toappend = []
 
     i = 0
-    for d in data[0]:
+    for d in trends:
         query_list += ((d['article'])+',')
-        query_title += ((d['article'])+'\n')
+        query_title += ((d['article'])+' - ')
+
+        toappend += [{u'access': u'all-access', u'views': d['views'], u'timestamp': timestamp, u'agent': u'all-agents', u'project': lang+'.wikipedia', d['article']+'_views': d['views'], u'granularity': u'daily', u'article': d['article']}]
 
         i += 1
         if i > 4: break
 
+
     query_list = query_list[:-1]
-    query_title = query_title[:-1]
+    query_title = query_title[:-2]
 
     form.name = query_list
     
@@ -96,13 +102,13 @@ def trends():
     startDate = str('%02d' % start.year)+str('%02d' % start.month)+str('%02d' % start.day)
     endDate =  str('%02d' % end.year)+str('%02d' % end.month)+str('%02d' % end.day)
     
-    flash(query_title)
+    flash(query_title.replace('_',' '))
 
     data, errors = getdata.launchQuery(query_list, startDate, endDate)
     if not data:
         flash("No data, retry")
         flash(errors)
-
+    data += toappend
 
     return render_template('index.html',form=form, data=data, query=query_list)
 
