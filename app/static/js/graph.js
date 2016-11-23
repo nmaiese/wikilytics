@@ -163,7 +163,10 @@ function renderDashboardCharts(data, query){
     viewsBarChart
       .x(d3.time.scale().domain([minDate, maxDate]))
       .dimension(dateDim)
-      .group(viewsByDate, "Views by day");
+      .group(viewsByDate, "Views by day")
+      .on('filtered',function(){
+        drawtips()
+      });
 
     langPieChart
       .radius(120)
