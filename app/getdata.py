@@ -38,7 +38,7 @@ def getViews(query):
                     stats = response.json()['items']
                     for s in stats:
                         if s.has_key('views'):
-                            replace = (s['article'].replace('(', '').replace(')', '').replace("'", '_').replace("_", ''))
+                            replace = ''.join(e for e in s['article'] if e.isalnum())
                             s[replace + 'views'] = s['views']
                     data += stats
 
