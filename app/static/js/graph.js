@@ -52,8 +52,8 @@ function formatCrossifilter(data, query){
       d.views = +d.views;
 
       query.forEach(function(k){
-        if (!(k+"_views" in d)){
-          d[k+"_views"] = 0;
+        if (!(k+"views" in d)){
+          d[k+"views"] = 0;
         }
       })
 
@@ -108,11 +108,11 @@ function renderDashboardCharts(data, query){
     articles = viewsByArticle.top(Infinity)
     articles_views_key = []
     articles.forEach(function(d){
-      articles_views_key.push(d.key.replace(/ /g, '_')+'_views')
+      articles_views_key.push(d.key.replace(/_/g, '')+'views')
     })
 
     articles_views_key.forEach(function(k){
-      this[k.replace(/ /g, '_')+'_byDate'] = dateDim.group().reduceSum(function(d) {
+      this[k.replace(/_/g, '')+'_byDate'] = dateDim.group().reduceSum(function(d) {
         if (k in d){
 
           return d[k];
@@ -186,10 +186,6 @@ function renderDashboardCharts(data, query){
       .elasticX(true);
 
 
-
-
-
-
     setChartWidth();
     dc.renderAll();
     drawtips();
@@ -244,7 +240,7 @@ function barchartAttribute(barchart){
 
 // Draw Tips on Graphs
 function drawtips() {
-    cosole.log('drawtips')
+    console.log('drawtips')
     var svg = d3.selectAll(".d3-tip-label-linechart").select("svg");
     var tip = d3.tip()
         .attr('class', 'd3-tip')
