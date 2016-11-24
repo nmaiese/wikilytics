@@ -39,7 +39,11 @@ select{
   background: white;
 }
 
-
+textarea{
+    border: 0px solid;
+    border-radius: 3px;
+    padding: 7px 10px;
+}
 
 input#get{
   height: 35px;

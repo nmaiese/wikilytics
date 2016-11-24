@@ -1,7 +1,7 @@
 from flask import render_template, flash, request
 from app import app
 from flask import request
-from wtforms import Form, validators, TextField, SelectField
+from wtforms import Form, validators, TextField, SelectField, TextAreaField
 from wtforms.fields.html5 import DateField
 from wtforms_components import DateIntervalField, DateRange
 from app import getdata
@@ -13,7 +13,7 @@ from flask_admin.form.widgets import DatePickerWidget
 
 
 class ReusableForm(Form):
-    name = TextField(default='username', validators=[validators.required()])
+    name = TextAreaField(default='username', validators=[validators.required()])
     date = TextField('Start', default='Select date', validators=[validators.required()])
 
 
