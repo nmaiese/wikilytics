@@ -33,7 +33,9 @@ function formatCrossifilter(data, query){
 
     query = query.replace(/ /g,'')
     query = query.replace(/l&#39;/g,'l_')
+    query = query.replace(/L&#39;/g,'L_')
     query = query.replace(/d&#39;/g,'d_')
+    query = query.replace(/D'/g,'D_')
     query = query.replace(/u&#39;/g,'"')
     query = query.replace(/&#39;/g,'"')
     query = query.replace(/u&#34;/g,'"')
