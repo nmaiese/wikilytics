@@ -112,4 +112,13 @@ footer{
     margin: 0 0px 15px 0;    
   }
 
+  .form-inline .form-group .btn-group.bootstrap-select{
+    width: 100%;
+    text-align: center;
+  }
+
+  .dropdown-menu > li > a:hover, .dropdown-menu > li > a{
+    text-align: center;
+  }
+
 }
