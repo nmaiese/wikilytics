@@ -8,6 +8,7 @@
 
     <link href="/static/css/bootstrap.css" rel="stylesheet" media="screen">
     <link href="/static/css/bootstrap-theme.css" rel="stylesheet">
+    <link href="/static/css/bootstrap-select.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
 
     <link href="/static/css/dc.css" rel="stylesheet">
@@ -25,9 +26,10 @@
 
   {% include "navbar.html" %}
 
+    {% block content %}
 
 
-            {% block content %}{% endblock %}
+    {% endblock %}
 
 
 
@@ -40,18 +42,21 @@
     <script src="/static/js/effects.js"></script>
     <script src="/static/js/dc.js"></script>
     <script src="/static/js/d3-tooltips.js"></script>
+    <script src="/static/js/bootstrap-select.js"></script>
 
     <script src="/static/js/graph.js"></script>
     <script src="/static/js/responsive.js"></script>
 
     <script>
 
+
+
     $( document ).ready(function() {
         
         data = '{{ data }}'
         query =  '{{ query }}'    
 
-        if(data && data != "None") {
+        if(data && data != "None" && data != [] && data != '[]') {
 
             data = data.replace(/l&#39;/g,'l_')
             data = data.replace(/d&#39;/g,'d_')

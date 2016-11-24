@@ -39,7 +39,11 @@ select{
   background: white;
 }
 
-
+textarea{
+    border: 0px solid;
+    border-radius: 3px;
+    padding: 7px 10px;
+}
 
 input#get{
   height: 35px;
@@ -106,6 +110,15 @@ footer{
   .form-inline .form-group{
     height: 35px;
     margin: 0 0px 15px 0;    
+  }
+
+  .form-inline .form-group .btn-group.bootstrap-select{
+    width: 100%;
+    text-align: center;
+  }
+
+  .dropdown-menu > li > a:hover, .dropdown-menu > li > a{
+    text-align: center;
   }
 
 }
