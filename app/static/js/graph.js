@@ -33,7 +33,9 @@ function formatCrossifilter(data, query){
 
     query = query.replace(/ /g,'')
     query = query.replace(/l&#39;/g,'l_')
+    query = query.replace(/L&#39;/g,'L_')
     query = query.replace(/d&#39;/g,'d_')
+    query = query.replace(/D'/g,'D_')
     query = query.replace(/u&#39;/g,'"')
     query = query.replace(/&#39;/g,'"')
     query = query.replace(/u&#34;/g,'"')
@@ -52,8 +54,8 @@ function formatCrossifilter(data, query){
       d.views = +d.views;
 
       query.forEach(function(k){
-        if (!(k+"_views" in d)){
-          d[k+"_views"] = 0;
+        if (!(removeSpecial(k)+"views" in d)){
+          d[removeSpecial(k)+"views"] = 0;
         }
       })
 
@@ -108,15 +110,13 @@ function renderDashboardCharts(data, query){
     articles = viewsByArticle.top(Infinity)
     articles_views_key = []
     articles.forEach(function(d){
-      articles_views_key.push(d.key.replace(/ /g, '_')+'_views')
+      articles_views_key.push(removeSpecial(d.key)+'views')
     })
 
     articles_views_key.forEach(function(k){
-      this[k.replace(/ /g, '_')+'_byDate'] = dateDim.group().reduceSum(function(d) {
+      this[removeSpecial(k)+'byDate'] = dateDim.group().reduceSum(function(d) {
         if (k in d){
-
           return d[k];
-
         }
       })  
     });
@@ -143,15 +143,15 @@ function renderDashboardCharts(data, query){
       if (articles_views_key.length > 1){
         for(var i =0; i < articles_views_key.length ;i++){
           if (i==0){
-            viewsLineChart.group(this[articles_views_key[i] +'_byDate'], articles[i].key)
+            viewsLineChart.group(this[articles_views_key[i] +'byDate'], articles[i].key)
           }
           else{
-            viewsLineChart.stack(this[articles_views_key[i] +'_byDate'], articles[i].key)
+            viewsLineChart.stack(this[articles_views_key[i] +'byDate'], articles[i].key)
           }
         }
       }
       else{
-        viewsLineChart.group(this[articles_views_key[0] +'_byDate'], articles[0].key)
+        viewsLineChart.group(this[articles_views_key[0] +'byDate'], articles[0].key)
       }
       viewsLineChart.rangeChart(viewsBarChart)
 //      .legend(dc.legend().x(60).y(265).autoItemWidth(true).gap(10).horizontal(true));
@@ -184,10 +184,6 @@ function renderDashboardCharts(data, query){
       .dimension(articleDim)
       .group(viewsByArticle)
       .elasticX(true);
-
-
-
-
 
 
     setChartWidth();
@@ -244,7 +240,7 @@ function barchartAttribute(barchart){
 
 // Draw Tips on Graphs
 function drawtips() {
-    cosole.log('drawtips')
+    console.log('drawtips')
     var svg = d3.selectAll(".d3-tip-label-linechart").select("svg");
     var tip = d3.tip()
         .attr('class', 'd3-tip')
@@ -288,3 +284,9 @@ function formatDate(data){
   d3Date = d3.time.format("%d/%m/%Y")
   return d3Date(data)
 }
+
+
+function removeSpecial(word){
+    return word.replace(/[^A-Z0-9]/ig, "")
+}
+
