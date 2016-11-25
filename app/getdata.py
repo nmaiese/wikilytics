@@ -1,6 +1,6 @@
 import requests
 import json
-import datetime 
+import datetime
 from flask import flash
 import os, re
 
@@ -19,13 +19,12 @@ badList = [
     u'Fran\xe7ois_Fillon'
 ]
 
-
 def getViews(query):
     try:
         data = []
         for q in query['query']:
             for lang in query['langs']:
-                
+
                 base = 'https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/' + lang + '.wikipedia/all-access/all-agents'
 
                 url = "/".join([base, q, 'daily', query['start']+'00', query['end']+'00'])
@@ -49,7 +48,7 @@ def getViews(query):
 
 
 def getTrends(day=datetime.date.today()-datetime.timedelta(days=1), langs=['en']):
-    
+
     try:
         data = []
 
@@ -95,9 +94,9 @@ def launchQuery(query, start, end, langs):
     query = query.split(",")
 
 
-    for i in range(0, len(query)): 
+    for i in range(0, len(query)):
         if query[i][0] == ' ':
-            query[i] = query[i][1:]        
+            query[i] = query[i][1:]
         if query[i][-1] == ' ':
             query[i] = query[i][:-1]
 
@@ -121,25 +120,25 @@ def acquireTrends(langs=['en']):
     toappend = []
 
     i = 0
+
     for d in trends:
         query_list += ((d['article'])+',')
         query_title += ((d['article'])+' - ')
+        article = ''.join(e for e in d['article'] if e.isalnum())
 
-        toappend += [{u'access': u'all-access', u'views': d['views'], u'timestamp': timestamp, u'agent': u'all-agents', u'project': d['lang']+'.wikipedia', d['article']+'_views': d['views'], u'granularity': u'daily', u'article': d['article']}]
+        toappend += [{u'access': u'all-access', u'views': d['views'], u'timestamp': timestamp, u'agent': u'all-agents', u'project': d['lang']+'.wikipedia', article+'views': d['views'], u'granularity': u'daily', u'article': d['article']}]
 
         i += 1
         if i > 4: break
 
-
     query_list = query_list[:-1]
     query_title = query_title[:-2]
-    
-    end = datetime.datetime.today() 
+    end = datetime.datetime.today()
     start = end - datetime.timedelta(days=10)
 
     startDate = str('%02d' % start.year)+str('%02d' % start.month)+str('%02d' % start.day)
     endDate =  str('%02d' % end.year)+str('%02d' % end.month)+str('%02d' % end.day)
-    
+
     data, errors = launchQuery(query_list, startDate, endDate, langs)
     if not data:
         flash("No data, retry")
