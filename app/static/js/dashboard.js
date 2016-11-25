@@ -38,6 +38,8 @@ function datePickerSet(start, end) {
     $('input#datarangepicker').daterangepicker({
         startDate: start,
         endDate: end,
+        maxDate: end
+        minDate: '05/01/2015'
         ranges: {
            'Today': [moment(), moment()],
            'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
