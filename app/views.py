@@ -18,8 +18,6 @@ class ReusableForm(Form):
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index')
-
-
 def index():
 
     supported_languages = ['en','it','de','nl','sv','ceb','de','fr','ru','es']

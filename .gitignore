@@ -96,3 +96,8 @@ ENV/
 
 .gitignore
 
+#flask asset generated
+.webassets-cache/
+gen/
+
+
