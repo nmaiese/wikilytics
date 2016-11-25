@@ -1,6 +1,7 @@
 var dateDim
 var viewsByArticle
 var viewsLineChart
+var viewsMultipleLineChart
 
 
 var it_IT = {
@@ -29,7 +30,7 @@ function formatCrossifilter(data, query){
 
 
     var dateFormat = d3.time.format('%Y%m%d');
-    
+
 
     query = query.replace(/ /g,'')
     query = query.replace(/l&#39;/g,'l_')
@@ -41,10 +42,10 @@ function formatCrossifilter(data, query){
     query = query.replace(/u&#34;/g,'"')
     query = query.replace(/&#34;/g,'"')
     query = query.replace(/[\])[(]/g, '')
-    
+
     query = query.split(',')
 
-    
+
     data.forEach(function (d) {
 
       var date = d.timestamp.substr(0,8);
@@ -106,10 +107,11 @@ function renderDashboardCharts(data, query){
       return d.views;
     });
 
-
+    colorDomain = []
     articles = viewsByArticle.top(Infinity)
     articles_views_key = []
     articles.forEach(function(d){
+      colorDomain.push(d.key)
       articles_views_key.push(removeSpecial(d.key)+'views')
     })
 
@@ -118,8 +120,16 @@ function renderDashboardCharts(data, query){
         if (k in d){
           return d[k];
         }
-      })  
+      })
     });
+
+
+
+var colorScale = d3.scale.ordinal()
+    .domain(colorDomain)
+    .range(['#DAC742','#D5404B','#48B537','#583795','#828BD2']);
+
+
 
 
     //Define values (to be used in charts)
@@ -127,7 +137,9 @@ function renderDashboardCharts(data, query){
     //Inizializate Charts
 
     viewsLineChart = dc.lineChart('#views-line-chart');
+    viewsMultipleLineChart = dc.compositeChart('#views-multiple-line-chart')
     var viewsBarChart = dc.barChart('#views-bar-chart');
+
     var langPieChart = dc.pieChart('#langs-pie-chart');
     var articleRowChart = dc.rowChart('#article-row-chart');
 
@@ -138,8 +150,8 @@ function renderDashboardCharts(data, query){
     viewsLineChart
       .x(d3.time.scale().domain([minDate, maxDate]))
       .dimension(dateDim);
-      
-      
+
+
       if (articles_views_key.length > 1){
         for(var i =0; i < articles_views_key.length ;i++){
           if (i==0){
@@ -155,10 +167,13 @@ function renderDashboardCharts(data, query){
       }
       viewsLineChart.rangeChart(viewsBarChart)
 //      .legend(dc.legend().x(60).y(265).autoItemWidth(true).gap(10).horizontal(true));
-      .legend(dc.legend().x(70).y(30).autoItemWidth(true).gap(10));
+      .legend(dc.legend().x(70).y(30).autoItemWidth(true).gap(10))
+      .colors(function(d) {
+        return colorScale(d)
+      });
 
 
-      
+
 
     viewsBarChart
       .x(d3.time.scale().domain([minDate, maxDate]))
@@ -183,7 +198,30 @@ function renderDashboardCharts(data, query){
       })
       .dimension(articleDim)
       .group(viewsByArticle)
-      .elasticX(true);
+      .elasticX(true)
+      .colors(function(d) {
+        return colorScale(d)
+      });
+
+
+    viewsMultipleLineChart
+        .width(null)
+        .height(500)
+        .x(d3.time.scale().domain([minDate, maxDate]))
+        .renderHorizontalGridLines(true)
+        .brushOn(false);
+
+        compose = []
+
+        for(var i =0; i < articles_views_key.length ;i++){
+            compose.push(dc.lineChart(viewsMultipleLineChart).group(this[articles_views_key[i] +'byDate'], articles[i].key).colors(function(d) {return colorScale(d)}))}
+
+      viewsMultipleLineChart.compose(compose).rangeChart(viewsBarChart)
+//    .legend(dc.legend().x(60).y(265).autoItemWidth(true).gap(10).horizontal(true));
+      .legend(dc.legend().x(70).y(30).autoItemWidth(true).gap(10))
+      .colors(function(d) {
+        return colorScale(d)
+      });
 
 
     setChartWidth();
@@ -215,6 +253,9 @@ function linechartAttribute(linechart){
   .mouseZoomable(false)
   .renderHorizontalGridLines(true)
   .transitionDuration(1000)
+  .colors(function(d) {
+      return colorScale(d)
+  })
   .yAxis().tickFormat(d3.format(".2s"));
 }
 
