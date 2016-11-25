@@ -81,7 +81,6 @@ celerybeat-schedule
 
 # virtualenv
 venv/
-venv
 ENV/
 
 # Spyder project settings
@@ -90,8 +89,8 @@ ENV/
 # Rope project settings
 .ropeproject
 
+#pyCharm file
 .idea/
-.idea
 
 .gitignore
 

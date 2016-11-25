@@ -4,7 +4,6 @@ import datetime
 from flask import flash
 import os, re
 
-
 badList = [
     u'Pagina_principale',
     u'Speciale:Ricerca',
@@ -45,8 +44,6 @@ def getViews(query):
         return None, response.content
 
 
-
-
 def getTrends(day=datetime.date.today()-datetime.timedelta(days=1), langs=['en']):
 
     try:
@@ -54,7 +51,6 @@ def getTrends(day=datetime.date.today()-datetime.timedelta(days=1), langs=['en']
 
         for lang in langs:
             url = 'https://wikimedia.org/api/rest_v1/metrics/pageviews/top/'+str(lang)+'.wikipedia/all-access/'+str(day.year)+'/'+str(day.month)+'/'+str(day.day)
-            print url
             response = requests.get(url)
             if response.json().has_key('items'):
                 stats = response.json()['items']

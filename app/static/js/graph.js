@@ -27,10 +27,7 @@ var numberFormatComma = IT.numberFormat(",.2f")
 
 function formatCrossifilter(data, query){
 
-
-
     var dateFormat = d3.time.format('%Y%m%d');
-
 
     query = query.replace(/ /g,'')
     query = query.replace(/l&#39;/g,'l_')
@@ -127,7 +124,7 @@ function renderDashboardCharts(data, query){
 
 var colorScale = d3.scale.ordinal()
     .domain(colorDomain)
-    .range(['#DAC742','#D5404B','#48B537','#583795','#828BD2']);
+    .range(['#00D46E','#B105CF','#0C80CC','#FF4100','#FF8E00']);
 
 
 
@@ -178,14 +175,20 @@ var colorScale = d3.scale.ordinal()
     viewsBarChart
       .x(d3.time.scale().domain([minDate, maxDate]))
       .dimension(dateDim)
-      .group(viewsByDate, "Views by day");
+      .group(viewsByDate, "Views by day")
+      .colors(function(d) {
+        return colorScale(d)
+      });
 
 
     langPieChart
       .radius(120)
       .height(280)
       .dimension(langDim)
-      .group(viewsByLang);
+      .group(viewsByLang)
+      .colors(function(d) {
+        return colorScale(d)
+      });
 
     articleRowChart
       .width(null)
@@ -277,8 +280,6 @@ function barchartAttribute(barchart){
 }
 
 
-
-
 // Draw Tips on Graphs
 function drawtips() {
     console.log('drawtips')
@@ -330,4 +331,34 @@ function formatDate(data){
 function removeSpecial(word){
     return word.replace(/[^A-Z0-9]/ig, "")
 }
+
+
+function fromDataToCharts(data, query){
+    $( document ).ready(function() {
+
+
+        if(data && data != "None" && data != [] && data != '[]') {
+
+            data = data.replace(/l&#39;/g,'l_')
+            data = data.replace(/d&#39;/g,'d_')
+            data = data.replace(/D&#39;/g,'D_')
+            data = data.replace(/l&#39;/g,'L_')
+            data = data.replace(/u&#39;/g,'"')
+            data = data.replace(/&#39;/g,'"')
+            data = data.replace(/u&#34;/g,'"')
+            data = data.replace(/&#34;/g,'"')
+            data = data.replace(/[\])[(]/g, '')
+            data = '['+data+']'
+
+            json = JSON.parse(data)
+            renderDashboardCharts(json, query);
+        }
+
+    });
+    $(window).resize(function(){
+      setChartWidth();
+      dc.renderAll();
+    });
+}
+
 
