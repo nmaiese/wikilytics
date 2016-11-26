@@ -25,6 +25,11 @@ function datePickerSet(start, end) {
 
 
 
+
+
+// $('input#name').attr('data-role','tagsinput')
+// $("input#name").val();
+
 $("input#name").autocomplete({
         source: function (request, response) {
             var term = request.term;

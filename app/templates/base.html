@@ -22,7 +22,7 @@
 
         <script>
 
-            data = '{{ data }}'
+            data = {{ data|tojson|safe }}
             query =  '{{ query }}'
 
             fromDataToCharts(data, query);

@@ -338,20 +338,7 @@ function fromDataToCharts(data, query){
 
 
         if(data && data != "None" && data != [] && data != '[]') {
-
-            data = data.replace(/l&#39;/g,'l_')
-            data = data.replace(/d&#39;/g,'d_')
-            data = data.replace(/D&#39;/g,'D_')
-            data = data.replace(/l&#39;/g,'L_')
-            data = data.replace(/u&#39;/g,'"')
-            data = data.replace(/&#39;/g,'"')
-            data = data.replace(/u&#34;/g,'"')
-            data = data.replace(/&#34;/g,'"')
-            data = data.replace(/[\])[(]/g, '')
-            data = '['+data+']'
-
-            json = JSON.parse(data)
-            renderDashboardCharts(json, query);
+          renderDashboardCharts(data, query);
         }
 
     });
