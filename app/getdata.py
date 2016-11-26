@@ -37,6 +37,8 @@ def getViews(query):
                             s[replace + 'views'] = s['views']
                     data += stats
 
+        if data == []: data = None
+
         return data, response.content
 
     except(KeyError):
