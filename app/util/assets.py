@@ -25,6 +25,7 @@ bundles = {
         'js/lib/dc.js',
         'js/lib/d3-tooltips.js',
         'js/lib/bootstrap-select.js',
+        # 'js/lib/jquery.autocomplete.js',
         'js/responsive.js',
         'js/graph.js',
         'js/dashboard.js',

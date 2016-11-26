@@ -24,12 +24,6 @@ function datePickerSet(start, end) {
 
 
 
-$('#autocomplete').autocomplete({
-    serviceUrl: '/autocomplete/countries',
-    onSelect: function (suggestion) {
-        alert('You selected: ' + suggestion.value + ', ' + suggestion.data);
-    }
-});
 
 $("input#name").autocomplete({
         source: function (request, response) {
@@ -47,12 +41,55 @@ $("input#name").autocomplete({
                     format: "json"
                 },
                 xhrFields: { withCredentials: true },
-                success: function(response) {
-                  d = response.query.search
-                    console.log(d[0].title)
+                success: function(data) {
+                response($.map(data.query.search, function (item) {
+                    console.log(item)
+                    return{
+                    label: item.title,
+                    value: item.title
+                  }
 
-                }
-            })
-          }
+                }))
+              }
+
         });
+    }})
+
+// $("input#name").autocomplete({
+//             //lookup: countries,
+//   serviceUrl:'https://it.wikipedia.org/w/api.php?action=query&list=search&format=json&srsearch=',
+//   //tell the script where to send requests
+//   type:'POST',
+//    width: 450, //set width
+//   //callback just to show it's working
+//   onSelect: function (suggestion) {
+//     $('#selection').html('You selected: ' + suggestion.value + ', ' + suggestion.data);
+//   },
+//   showNoSuggestionNotice: true,
+//   noSuggestionNotice: 'Sorry, no matching results',
+
+//   });
+
+
+
+
+// $('input#name').autocomplete({
+//     serviceUrl: 'https://it.wikipedia.org/w/api.php?action=query&list=search&format=json&srsearch=',
+//     onSelect: function (suggestion) {
+//       console.log(suggestion)
+//         alert('You selected: ' + suggestion.value + ', ' + suggestion.data);
+//     },
+//     ajaxSettings: {
+//           jsonp: "callback",
+//           dataType: 'jsonp',
+//           data: {
+//             action: "query",
+//             list: "search",
+//             format: "json"
+//           },
+
+//       xhrFields: { withCredentials: true },
+//     }
+
+// });
 

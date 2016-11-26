@@ -52,3 +52,23 @@ def index():
 
     return render_template('index.html', form=form, data=data, name=name.replace('_',' '), query=form_input)
 
+
+@app.route('/ajaxautocomplete',methods=['POST', 'GET'])
+def ajaxautocomplete():
+    result=''
+    if request.method=='POST':
+     query=request.form['query']
+
+     try:
+
+      with connection.cursor() as cursor:
+          sql="select country_code data,country_name value from  countries where country_name like '%"+query+"%'"
+          cursor.execute(sql)
+          result = cursor.fetchall()
+     finally:
+      a=2
+     return json.dumps({"suggestions":result})
+    else:
+
+     return "ooops"
+
