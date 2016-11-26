@@ -1,3 +1,7 @@
+body {
+  font-family: 'Lato', sans-serif;
+}
+
 .jumbotron{
   padding-top: 50px;
 }
@@ -50,15 +54,12 @@
   height:35px;
 }
 
-
 input{
   border: 0px solid;
   border-radius: 3px;
   padding: 0px 10px;
 
 }
-
-
 
 select{
   border: 0px solid;
@@ -82,16 +83,13 @@ input#get{
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
-
 }
-
 
 input#get:hover {
   background-color: #ffffff;
   color: #5bc0de;
   border-color: #5bc0de;
 }
-
 
 button#reset-all {
     height: 35px;
@@ -103,22 +101,29 @@ button#reset-all {
     transition: all 0.3s ease-in-out;
 }
 
-
 button#reset-all:hover {
   background-color: #000000;
   color: white;
   border-color: #ffffff;
 }
 
+
+.label {
+    font-size: 100%;
+    padding: .2em .6em .3em 0.9em;
+
+}
+
+.bootstrap-tagsinput input {
+    padding: 0px 10px;
+  }
+
 footer{
   color: white;
   height: 70px;
   padding: 20px 10px;
   background-image: linear-gradient(to bottom, #3c3c3c 0%, #222 100%);
-
 }
-
-
 
 @media(max-width: 1199px){
 
@@ -144,11 +149,6 @@ footer{
   }
 
 }
-
-
-
-
-
 
 @media(max-width: 767px){
   #datarangepicker, #name, #lang {

@@ -5,19 +5,18 @@ var viewsMultipleLineChart
 
 
 var it_IT = {
-
-    "decimal": ",",
-    "thousands": ".",
-    "grouping": [3],
-    "currency": ["€", ""],
-    "dateTime": "%a %b %e %X %Y",
-    "date": "%d/%m/%Y",
-    "time": "%H:%M:%S",
-    "periods": ["AM", "PM"],
-    "days": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-    "shortDays": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
-    "months": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-    "shortMonths": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+  "decimal": ",",
+  "thousands": ".",
+  "grouping": [3],
+  "currency": ["€", ""],
+  "dateTime": "%a %b %e %X %Y",
+  "date": "%d/%m/%Y",
+  "time": "%H:%M:%S",
+  "periods": ["AM", "PM"],
+  "days": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+  "shortDays": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+  "months": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+  "shortMonths": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 }
 
 var IT = d3.locale(it_IT);
@@ -27,40 +26,33 @@ var numberFormatComma = IT.numberFormat(",.2f")
 
 function formatCrossifilter(data, query){
 
-    var dateFormat = d3.time.format('%Y%m%d');
+  var dateFormat = d3.time.format('%Y%m%d');
 
-    query = query.replace(/ /g,'')
-    query = query.replace(/l&#39;/g,'l_')
-    query = query.replace(/L&#39;/g,'L_')
-    query = query.replace(/d&#39;/g,'d_')
-    query = query.replace(/D'/g,'D_')
-    query = query.replace(/u&#39;/g,'"')
-    query = query.replace(/&#39;/g,'"')
-    query = query.replace(/u&#34;/g,'"')
-    query = query.replace(/&#34;/g,'"')
-    query = query.replace(/[\])[(]/g, '')
+  query = query.replace(/ /g,'')
+  query = query.replace(/l&#39;/g,'l_')
+  query = query.replace(/L&#39;/g,'L_')
+  query = query.replace(/d&#39;/g,'d_')
+  query = query.replace(/D'/g,'D_')
+  query = query.replace(/u&#39;/g,'"')
+  query = query.replace(/&#39;/g,'"')
+  query = query.replace(/u&#34;/g,'"')
+  query = query.replace(/&#34;/g,'"')
+  query = query.replace(/[\])[(]/g, '')
+  query = query.split(',')
 
-    query = query.split(',')
-
-
-    data.forEach(function (d) {
-
-      var date = d.timestamp.substr(0,8);
-
-      d.timestamp = dateFormat.parse(date);
-      d.project = d.project.replace('.wikipedia', '');
-      d.views = +d.views;
-
-      query.forEach(function(k){
-        if (!(removeSpecial(k)+"views" in d)){
-          d[removeSpecial(k)+"views"] = 0;
-        }
-      })
-
-    });
-
-    ndx = crossfilter(data);
-    return ndx;
+  data.forEach(function (d) {
+    var date = d.timestamp.substr(0,8);
+    d.timestamp = dateFormat.parse(date);
+    d.project = d.project.replace('.wikipedia', '');
+    d.views = +d.views;
+    query.forEach(function(k){
+      if (!(removeSpecial(k)+"views" in d)){
+        d[removeSpecial(k)+"views"] = 0;
+      }
+    })
+  });
+  ndx = crossfilter(data);
+  return ndx;
 }
 
 function createDimension(ndx, dimension){
@@ -285,102 +277,6 @@ function drawtips() {
 }
 
 
-function composeLinechartTooltip(d){
-  return "<strong>" + d.layer + "</strong> <br/> " +
-   numberFormat(d.data.value) + "<br/>" +
-   formatDate(d.data.key)
-
-}
-
-function composeBarchartTooltip(d){
-  return "<strong>" + d.layer + "</strong> <br/> " +
-   numberFormat(d.y) + "<br/>" +
-   formatDate(d.data.key)
-}
-
-function formatDate(data){
-  d3Date = d3.time.format("%d/%m/%Y")
-  return d3Date(data)
-}
-
-
-function removeSpecial(word){
-    return word.replace(/[^A-Z0-9]/ig, "")
-}
-
-
-function fromDataToCharts(data, query){
-    $( document ).ready(function() {
-        addAutocomplete();
-
-        if(data && data != "None" && data != [] && data != '[]') {
-          renderDashboardCharts(data, query);
-
-        }
-
-    });
-    $(window).resize(function(){
-      setChartWidth();
-      dc.renderAll();
-    });
-}
-
-function rangesEqual(range1, range2) {
-        if (!range1 && !range2) {
-            return true;
-        }
-        else if (!range1 || !range2) {
-            return false;
-        }
-        else if (range1.length === 0 && range2.length === 0) {
-            return true;
-        }
-        else if (range1[0].valueOf() === range2[0].valueOf() &&
-            range1[1].valueOf() === range2[1].valueOf()) {
-            return true;
-        }
-        return false;
-    }
-
-function applyRangeChart(rangeChart, chartlist){
-    rangeChart.focusCharts = function(charts) {
-    if (!arguments.length) {
-      return this._focusCharts;
-    }
-    this._focusCharts = chartlist; // only needed to support the getter above
-    this.on('filtered', function(range_chart) {
-        if (!range_chart.filter()) {
-            dc.events.trigger(function() {
-                chartlist.forEach(function(focus_chart) {
-                    if (focus_chart.anchorName() != "community-goal-chart" && focus_chart.anchorName() != "engagement-goal-chart"){
-                    focus_chart.x().domain(focus_chart.xOriginalDomain());
-                  }
-                });
-            });
-        } else chartlist.forEach(function(focus_chart) {
-                          if (focus_chart.anchorName() == "community-goal-chart") {
-                            focus_chart.needleValue(dateDim.top(1)[0].community)
-                            .redraw();
-
-            }
-                          if (focus_chart.anchorName() == "engagement-goal-chart") {
-                            focus_chart.needleValue(getEngagementSum(fbEngagementDim))
-                            .redraw();
-
-            }
-
-
-            if (!rangesEqual(range_chart.filter(), focus_chart.filter()) && focus_chart.anchorName() != "community-goal-chart" && focus_chart.anchorName() != "engagement-goal-chart") {
-                dc.events.trigger(function() {
-                    focus_chart.focus(range_chart.filter());
-                });
-            }
-        });
-    });
-    return this;
-  };
-  rangeChart.focusCharts(chartlist);
-}
 
 
 
