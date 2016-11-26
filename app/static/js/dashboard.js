@@ -55,6 +55,11 @@ function addAutocomplete(){
 
 }
 
+
+$('input#name').attr('data-role','tagsinput')
+$("input#name").val();
+
+
 // $("input#name").autocomplete({
 //             //lookup: countries,
 //   serviceUrl:'https://it.wikipedia.org/w/api.php?action=query&list=search&format=json&srsearch=',

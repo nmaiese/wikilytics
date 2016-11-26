@@ -2,11 +2,26 @@
   padding-top: 50px;
 }
 
+#dashboard{
+  min-height:350px;
+}
+
 #search-title{
   text-align: center;
   width: 100%
 }
+.navbar-inverse{
+  background: #5bc0de;
+  border:#5bc0de 1px solid;
+}
 
+.navbar-inverse .navbar-nav > li > a {
+    color: #ffffff;
+}
+
+.navbar-inverse .navbar-brand {
+    color: #ffffff;
+}
 
 .form-inline .form-group{
   height: 35px;
@@ -62,7 +77,7 @@ input#get{
   padding: 0 10px;
   font-size: 14px;
   color:#ffffff;
-  background-color: #009ac9;
+  background-color: #5bc0de;
   -webkit-border-radius: 5px;
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
@@ -73,11 +88,27 @@ input#get{
 
 input#get:hover {
   background-color: #ffffff;
-  color: #009ac9;
-  border-color: #009ac9;
+  color: #5bc0de;
+  border-color: #5bc0de;
 }
 
 
+button#reset-all {
+    height: 35px;
+    margin: 7px 0;
+    background: white;
+    -webkit-border-radius: 5px;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+
+button#reset-all:hover {
+  background-color: #000000;
+  color: white;
+  border-color: #ffffff;
+}
 
 footer{
   color: white;
