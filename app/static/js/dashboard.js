@@ -21,3 +21,38 @@ function datePickerSet(start, end) {
         }
     }, datePickerSet);
 }
+
+
+
+$('#autocomplete').autocomplete({
+    serviceUrl: '/autocomplete/countries',
+    onSelect: function (suggestion) {
+        alert('You selected: ' + suggestion.value + ', ' + suggestion.data);
+    }
+});
+
+$("input#name").autocomplete({
+        source: function (request, response) {
+            var term = request.term;
+            var restUrl = 'https://it.wikipedia.org/w/api.php?action=query&list=search&srsearch='+term+'&format=json';
+
+            $.ajax( {
+                url: restUrl,
+                jsonp: "callback",
+                dataType: 'jsonp',
+                data: {
+                    action: "query",
+                    list: "search",
+                    srsearch: request.term,
+                    format: "json"
+                },
+                xhrFields: { withCredentials: true },
+                success: function(response) {
+                  d = response.query.search
+                    console.log(d[0].title)
+
+                }
+            })
+          }
+        });
+
