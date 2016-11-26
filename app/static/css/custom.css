@@ -10,7 +10,7 @@
 
 .form-inline .form-group{
   height: 35px;
-  margin: 0 15px 0px 0;    
+  margin: 0 15px 0px 0;
 }
 
 .form-inline #last-form-group{
@@ -26,12 +26,24 @@
 }
 
 
-input{  
+.bootstrap-tagsinput {
+  border: 0px solid;
+  border-radius: 3px;
+  padding: 7px 10px;
+  box-shadow:none;
+  width:550px;
+  height:35px;
+}
+
+
+input{
   border: 0px solid;
   border-radius: 3px;
   padding: 0px 10px;
 
 }
+
+
 
 select{
   border: 0px solid;
@@ -77,6 +89,13 @@ footer{
 
 
 
+@media(max-width: 1199px){
+
+  .form-inline .form-group {
+      margin: 0 15px 18px 0;
+  }
+}
+
 @media(max-width: 991px){
   #datarangepicker, #name, #lang {
     width: 100%;
@@ -85,7 +104,7 @@ footer{
 
   .form-inline .form-group{
     margin-right: 7px;
-    
+
   }
 
   #get{
@@ -109,7 +128,7 @@ footer{
 
   .form-inline .form-group{
     height: 35px;
-    margin: 0 0px 15px 0;    
+    margin: 0 0px 15px 0;
   }
 
   .form-inline .form-group .btn-group.bootstrap-select{
@@ -119,6 +138,10 @@ footer{
 
   .dropdown-menu > li > a:hover, .dropdown-menu > li > a{
     text-align: center;
+  }
+
+  .bootstrap-tagsinput {
+    width:100%;
   }
 
 }

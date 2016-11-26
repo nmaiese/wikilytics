@@ -282,7 +282,6 @@ function barchartAttribute(barchart){
 
 // Draw Tips on Graphs
 function drawtips() {
-    console.log('drawtips')
     var svg = d3.selectAll(".d3-tip-label-linechart").select("svg");
     var tip = d3.tip()
         .attr('class', 'd3-tip')
@@ -335,10 +334,11 @@ function removeSpecial(word){
 
 function fromDataToCharts(data, query){
     $( document ).ready(function() {
-
+        addAutocomplete();
 
         if(data && data != "None" && data != [] && data != '[]') {
           renderDashboardCharts(data, query);
+
         }
 
     });
@@ -347,5 +347,8 @@ function fromDataToCharts(data, query){
       dc.renderAll();
     });
 }
+
+$('input#name').attr('data-role','tagsinput')
+$("input#name").val();
 
 

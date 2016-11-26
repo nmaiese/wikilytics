@@ -48,8 +48,8 @@ def index():
                 flash("No data, retry")
                 flash(errors)
         else:
-            flash('All the form fields are required. ')
-
+            name = 'All the form fields are required. '
+            data = []
     return render_template('index.html', form=form, data=data, name=name.replace('_',' '), query=form_input)
 
 

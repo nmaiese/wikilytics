@@ -22,15 +22,9 @@ function datePickerSet(start, end) {
     }, datePickerSet);
 }
 
+function addAutocomplete(){
 
-
-
-
-
-// $('input#name').attr('data-role','tagsinput')
-// $("input#name").val();
-
-$("input#name").autocomplete({
+ $('.bootstrap-tagsinput').children('input').autocomplete({
         source: function (request, response) {
             var term = request.term;
             var restUrl = 'https://it.wikipedia.org/w/api.php?action=query&list=search&srsearch='+term+'&format=json';
@@ -48,7 +42,6 @@ $("input#name").autocomplete({
                 xhrFields: { withCredentials: true },
                 success: function(data) {
                 response($.map(data.query.search, function (item) {
-                    console.log(item)
                     return{
                     label: item.title,
                     value: item.title
@@ -59,6 +52,8 @@ $("input#name").autocomplete({
 
         });
     }})
+
+}
 
 // $("input#name").autocomplete({
 //             //lookup: countries,
