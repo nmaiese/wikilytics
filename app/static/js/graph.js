@@ -59,13 +59,9 @@ function formatCrossifilter(data, query){
 
     });
 
-
-
-
     ndx = crossfilter(data);
     return ndx;
 }
-
 
 function createDimension(ndx, dimension){
   ndxDim = ndx.dimension(function(d){
@@ -74,23 +70,15 @@ function createDimension(ndx, dimension){
   return ndxDim;
 }
 
-
-
 function renderDashboardCharts(data, query){
 
-
-
     var ndx = formatCrossifilter(data, query);
-
     dateDim = createDimension(ndx, "timestamp");
     var viewsDim = createDimension(ndx, "views");
     var langDim = createDimension(ndx, "project")
     var articleDim = createDimension(ndx, "article")
-
     var minDate = dateDim.bottom(1)[0].timestamp;
     var maxDate = dateDim.top(1)[0].timestamp;
-
-
 
     var viewsByDate = dateDim.group().reduceSum(function(d) {
       return d.views;
@@ -120,17 +108,11 @@ function renderDashboardCharts(data, query){
       })
     });
 
-
-
 var colorScale = d3.scale.ordinal()
     .domain(colorDomain)
     .range(['#00D46E','#B105CF','#0C80CC','#FF4100','#FF8E00']);
 
-
-
-
     //Define values (to be used in charts)
-
     //Inizializate Charts
 
     viewsLineChart = dc.lineChart('#views-line-chart');
@@ -140,7 +122,7 @@ var colorScale = d3.scale.ordinal()
     var langPieChart = dc.pieChart('#langs-pie-chart');
     var articleRowChart = dc.rowChart('#article-row-chart');
 
-//    Add Basic Attribute for line charts
+    //Add Basic Attribute for line charts
     linechartAttribute(viewsLineChart);
     barchartAttribute(viewsBarChart);
 
@@ -148,29 +130,25 @@ var colorScale = d3.scale.ordinal()
       .x(d3.time.scale().domain([minDate, maxDate]))
       .dimension(dateDim);
 
-
-      if (articles_views_key.length > 1){
-        for(var i =0; i < articles_views_key.length ;i++){
-          if (i==0){
-            viewsLineChart.group(this[articles_views_key[i] +'byDate'], articles[i].key)
-          }
-          else{
-            viewsLineChart.stack(this[articles_views_key[i] +'byDate'], articles[i].key)
-          }
+    if (articles_views_key.length > 1){
+      for(var i =0; i < articles_views_key.length ;i++){
+        if (i==0){
+          viewsLineChart.group(this[articles_views_key[i] +'byDate'], articles[i].key)
+        }
+        else{
+          viewsLineChart.stack(this[articles_views_key[i] +'byDate'], articles[i].key)
         }
       }
-      else{
-        viewsLineChart.group(this[articles_views_key[0] +'byDate'], articles[0].key)
-      }
-      viewsLineChart.rangeChart(viewsBarChart)
-//      .legend(dc.legend().x(60).y(265).autoItemWidth(true).gap(10).horizontal(true));
-      .legend(dc.legend().x(70).y(30).autoItemWidth(true).gap(10))
-      .colors(function(d) {
-        return colorScale(d)
-      });
-
-
-
+    }
+    else{
+      viewsLineChart.group(this[articles_views_key[0] +'byDate'], articles[0].key)
+    }
+    viewsLineChart.rangeChart(viewsBarChart)
+    //.legend(dc.legend().x(60).y(265).autoItemWidth(true).gap(10).horizontal(true));
+    .legend(dc.legend().x(70).y(30).autoItemWidth(true).gap(10))
+    .colors(function(d) {
+      return colorScale(d)
+    });
 
     viewsBarChart
       .x(d3.time.scale().domain([minDate, maxDate]))
@@ -179,7 +157,6 @@ var colorScale = d3.scale.ordinal()
       .colors(function(d) {
         return colorScale(d)
       });
-
 
     langPieChart
       .radius(120)
@@ -210,6 +187,12 @@ var colorScale = d3.scale.ordinal()
     viewsMultipleLineChart
         .width(null)
         .height(500)
+        .margins({
+            top: 15,
+            right: 50,
+            bottom: 40,
+            left: 60
+        })
         .x(d3.time.scale().domain([minDate, maxDate]))
         .renderHorizontalGridLines(true)
         .brushOn(false);
@@ -228,19 +211,10 @@ var colorScale = d3.scale.ordinal()
 
 
     setChartWidth();
-
     applyRangeChart(viewsBarChart, [viewsMultipleLineChart, viewsLineChart]);
-
-
     dc.renderAll();
     drawtips();
-
 }
-
-
-
-
-
 
 function linechartAttribute(linechart){
   linechart
@@ -282,7 +256,6 @@ function barchartAttribute(barchart){
   .yAxis().ticks(0);
 
 }
-
 
 // Draw Tips on Graphs
 function drawtips() {
@@ -352,8 +325,6 @@ function fromDataToCharts(data, query){
     });
 }
 
-
-
 function rangesEqual(range1, range2) {
         if (!range1 && !range2) {
             return true;
@@ -370,7 +341,6 @@ function rangesEqual(range1, range2) {
         }
         return false;
     }
-
 
 function applyRangeChart(rangeChart, chartlist){
     rangeChart.focusCharts = function(charts) {
