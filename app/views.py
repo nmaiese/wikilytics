@@ -9,7 +9,6 @@ import json
 import datetime
 from flask_admin.form.widgets import DatePickerWidget
 
-
 class ReusableForm(Form):
     name = TextField(default='username', validators=[validators.required()])
     date = TextField('Start', default='Select date', validators=[validators.required()])
