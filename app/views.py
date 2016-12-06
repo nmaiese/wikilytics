@@ -22,6 +22,8 @@ def index():
     supported_languages = ['en','it','de','nl','sv','ceb','de','fr','ru','es']
     langs = []
     langs.append(request.accept_languages.best_match(supported_languages))
+    if langs == [] or not langs:
+        langs = ['it']
 
     form = ReusableForm(request.form)
 
