@@ -10,6 +10,7 @@ bundles = {
         'css/lib/dc.css',
         'css/lib/jquery-ui.css',
         'css/lib/d3-tooltips.css',
+        'css/lib/bootstrap-tagsinput.css',
         'css/custom.css',
         output='gen/css.css'),
 
@@ -25,6 +26,7 @@ bundles = {
         'js/lib/dc.js',
         'js/lib/d3-tooltips.js',
         'js/lib/bootstrap-select.js',
+        'js/lib/bootstrap-tagsinput.js',
         'js/responsive.js',
         'js/graph.js',
         'js/dashboard.js',

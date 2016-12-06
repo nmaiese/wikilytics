@@ -9,9 +9,8 @@ import json
 import datetime
 from flask_admin.form.widgets import DatePickerWidget
 
-
 class ReusableForm(Form):
-    name = TextField(default='username', validators=[validators.required()])
+    name = TextField(validators=[validators.required()])
     date = TextField('Start', default='Select date', validators=[validators.required()])
     languages = SelectMultipleField('Languages', choices=[('en', 'English'), ('it', 'Italian'), ('nl','Nederlands'), ('sv','Swedish'),('ceb','Cebuano'),('de','German'),('fr', 'French'),('ru', 'Russian'),('es','Spanish')], validators=[validators.required()])
 
@@ -48,7 +47,9 @@ def index():
                 flash("No data, retry")
                 flash(errors)
         else:
-            flash('All the form fields are required. ')
-
+            name = 'All the form fields are required. '
+            data = []
     return render_template('index.html', form=form, data=data, name=name.replace('_',' '), query=form_input)
+
+
 
