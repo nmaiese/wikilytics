@@ -1,0 +1,742 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"wtf",
+				"wtforms_components"
+			],
+			[
+				"w",
+				"widgets"
+			],
+			[
+				"date",
+				"datetime\tmodule"
+			],
+			[
+				"wi",
+				"while\tWhile Loop"
+			],
+			[
+				"que",
+				"query_list\tstatement"
+			],
+			[
+				"quer",
+				"query_list"
+			],
+			[
+				"get",
+				"getdata\tmodule"
+			],
+			[
+				"ela",
+				"elasticY"
+			],
+			[
+				"vie",
+				"viewsLineChart"
+			],
+			[
+				"view",
+				"viewsLineChart"
+			],
+			[
+				"v",
+				"viewsByDate"
+			],
+			[
+				"vi",
+				"views"
+			],
+			[
+				"st",
+				"stats\tstatement"
+			],
+			[
+				"art",
+				"articleDim"
+			],
+			[
+				"redu",
+				"returned"
+			],
+			[
+				"views",
+				"viewsByArticle"
+			],
+			[
+				"viw",
+				"viewsByArticle"
+			],
+			[
+				"gr",
+				"groupedArticleDim"
+			],
+			[
+				"rep",
+				"response\tstatement"
+			],
+			[
+				"view-",
+				"views-bar-chart"
+			],
+			[
+				"lan",
+				"viewsByLang"
+			],
+			[
+				"en",
+				"endDate\tstatement"
+			],
+			[
+				"text-align",
+				"text-align-last"
+			],
+			[
+				"pad",
+				"padding"
+			],
+			[
+				"paddin",
+				"padding-top"
+			],
+			[
+				"max-",
+				"max-width"
+			],
+			[
+				"gro",
+				"groupedFbEngagementByDate"
+			],
+			[
+				"fbEn",
+				"groupedFbEngagementByDate"
+			],
+			[
+				"fbEnga",
+				"fbEngagementByDate"
+			],
+			[
+				"eng",
+				"fbEngagementDim"
+			],
+			[
+				"faceboo",
+				"facebookEngagementStackChart"
+			],
+			[
+				"bar",
+				"barchartAttribute"
+			],
+			[
+				"face",
+				"facebookEngagementChart"
+			],
+			[
+				"facebok",
+				"facebookEngagementStackChart"
+			],
+			[
+				"list-st",
+				"list-style-type"
+			],
+			[
+				"table",
+				"table-cell"
+			],
+			[
+				"communityGoal",
+				"communityGoalLeftxDay"
+			],
+			[
+				"communiGoal",
+				"communityGoalLeftxDay"
+			],
+			[
+				"communi",
+				"communityGoal"
+			],
+			[
+				"ENGAGEMEN",
+				"engagementGoal"
+			],
+			[
+				"tim",
+				"timestampDay"
+			],
+			[
+				"text-a",
+				"text-align"
+			],
+			[
+				"min",
+				"minCommunity"
+			],
+			[
+				"communityAbs",
+				"communityByDateAbs"
+			],
+			[
+				"foc",
+				"focus_chart"
+			],
+			[
+				"pageFa",
+				"pageFansByDateAbs"
+			],
+			[
+				"twFo",
+				"twFollowersDimAbs"
+			],
+			[
+				"comm",
+				"communityDim"
+			],
+			[
+				"com",
+				"community"
+			],
+			[
+				"twFol",
+				"twFollowersByDate"
+			],
+			[
+				"red",
+				"reduceSum"
+			],
+			[
+				"fb_fa",
+				"fb_page_fans"
+			],
+			[
+				"fb_",
+				"fb_total_engagement"
+			],
+			[
+				"enga",
+				"engagement-goal-chart"
+			],
+			[
+				"engagemnet",
+				"engagementGoalGauge"
+			],
+			[
+				"ga",
+				"engagement-goal-chart"
+			],
+			[
+				"fil",
+				"filter"
+			],
+			[
+				"c",
+				"chartlist"
+			],
+			[
+				"chart",
+				"chartlist"
+			],
+			[
+				"range",
+				"rangeChart"
+			],
+			[
+				"focu",
+				"focusCharts"
+			],
+			[
+				"fb",
+				"facebookAbsFanChart"
+			],
+			[
+				"fbE",
+				"facebookEngagementChart"
+			],
+			[
+				"fbEng",
+				"fbEngagementByDate"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"CO",
+				"communityGoalGauge"
+			],
+			[
+				"gau",
+				"gaugeChart"
+			],
+			[
+				"line",
+				"linechart"
+			],
+			[
+				"grou",
+				"groupAll"
+			],
+			[
+				"fbFa",
+				"fbPageFansDim"
+			],
+			[
+				"Fb",
+				"fbPageFansDimAbs"
+			],
+			[
+				"page",
+				"pageFansByDate"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "wikilitycs.sublime-project",
+			"settings":
+			{
+				"buffer_size": 382,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/views.py",
+			"settings":
+			{
+				"buffer_size": 1977,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 96.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"Package Control: inst",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: in",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: nst",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: int",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: install",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 417.0
+	},
+	"console":
+	{
+		"height": 146.0,
+		"history":
+		[
+			"pip install",
+			"day.year",
+			"day.years",
+			"day.month",
+			"day.day",
+			"day = datetime.date.today()",
+			"import datetime",
+			"s.replace('p','')",
+			"s.replace",
+			"s = 'pippo'",
+			"a.slice(-5)",
+			"a = \"Donald \"",
+			"import requests",
+			"a.split(\",\")",
+			"a.split(\",\"",
+			"a = \"Italia, Donald Trump\"",
+			"q.split(\",\")",
+			"q = \"a\"",
+			"query.split(\",\")",
+			"query = \"a,b,c\"",
+			"l[0]",
+			"l = ('en', 'English')",
+			"import json",
+			"import flask",
+			"from flask",
+			"a",
+			"cd ",
+			"ls",
+			"from wtforms.widgets import Select"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/N/Desktop/MEC/wikilytics",
+		"/Users/N/Desktop/MEC/wikilytics/app",
+		"/Users/N/Desktop/MEC/wikilytics/app/static",
+		"/Users/N/Desktop/MEC/wikilytics/app/static/css"
+	],
+	"file_history":
+	[
+		"/Users/N/Desktop/MEC/wikilytics/app/templates/navbar.html",
+		"/Users/N/Desktop/MEC/wikilytics/app/getdata.py",
+		"/Users/N/Desktop/MEC/wikilytics/app/templates/base.html",
+		"/Users/N/Desktop/MEC/wikilytics/app/static/css/custom.css",
+		"/Users/N/Desktop/MEC/wikilytics/app/util/assets.py",
+		"/Users/N/Desktop/MEC/wikilytics/app/static/js/graph.js",
+		"/Users/N/Desktop/MEC/wikilytics/app/templates/index.html",
+		"/Users/N/Desktop/MEC/wikilytics/app/static/js/dashboard.js",
+		"/Users/N/Desktop/MEC/wikilytics/app/views.py",
+		"/Users/N/Library/Application Support/Sublime Text 3/Packages/Anaconda/Anaconda.sublime-settings",
+		"/Users/N/Desktop/MEC/wikilytics/.gitignore",
+		"/Users/N/Desktop/MEC/wikilytics/app/static/js/lib/jquery.autocomplete.js",
+		"/Users/N/Desktop/MEC/wikilytics/app/static/gen/javascript.js",
+		"/Users/N/Desktop/MEC/wikilytics/README.md",
+		"/Users/N/Desktop/MEC/wikilytics/app/__init__.py",
+		"/Users/N/Desktop/MEC/wikilytics/app/static/css/lib/bootstrap-select.css",
+		"/Users/N/Desktop/MEC/wikilytics/app/util/assets/assets.py",
+		"/Users/N/Desktop/MEC/wikilytics/app/static/css/dashboard.css",
+		"/Users/N/Desktop/MEC/wikilytics/app/util/assets/__init__.py",
+		"/Users/N/Desktop/MEC/wikilytics/app/util/__init__.py",
+		"/Users/N/Desktop/MEC/wikilytics/run.py",
+		"/Users/N/Library/Application Support/Sublime Text 3/Packages/SublimeREPL/SublimeREPL.sublime-settings",
+		"/Users/N/Library/Application Support/Sublime Text 3/Packages/User/SublimeREPL.sublime-settings",
+		"/Users/N/Library/Application Support/Sublime Text 3/Packages/User/Anaconda.sublime-settings",
+		"/Users/N/Desktop/MEC/wikilytics/.git/MERGE_MSG",
+		"/Users/N/Desktop/MEC/wikilytics/app/templates/dashboard.html",
+		"/Users/N/Desktop/MEC/wikilytics/.bowerrc",
+		"/Users/N/Desktop/MEC/wikilytics/bower.json",
+		"/Users/N/Desktop/MEC/wikilytics/app/templates/charts.html",
+		"/Users/N/Desktop/MEC/wikilytics/app/static/css/d3-tooltips.css",
+		"/Users/N/Desktop/MEC/wikilytics/app/static/js/effects.js",
+		"/Users/N/Desktop/MEC/sky_social_report/app/views/socials/js/_graphs.js",
+		"/Users/N/Desktop/MEC/wikilytics/app/static/css/effects.css",
+		"/Users/N/Desktop/MEC/wikilytics/app/static/js/responsive.js",
+		"/Users/N/Desktop/MEC/sky_social_report/app/views/socials/dashboard.html.haml",
+		"/Users/N/Desktop/MEC/sky_social_report/app/views/socials/js/_responsive_functions.js",
+		"/Users/N/Library/Containers/com.apple.mail/Data/Library/Mail Downloads/C3D8F085-8712-4D79-B10F-B2596EA1992E/background.png",
+		"/Users/N/Desktop/MEC/sky_social_report/vendor/assets/javascripts/dc.js",
+		"/Users/N/Desktop/MEC/sky_social_report/.git/MERGE_MSG",
+		"/Users/N/Desktop/MEC/sky_social_report/app/views/layouts/_navbar.html.haml",
+		"/Users/N/Desktop/MEC/sky_social_report/app/views/layouts/_javascripts.html.haml",
+		"/Users/N/Desktop/MEC/sky_social_report/app/views/layouts/_stylesheets.html.haml",
+		"/Users/N/Desktop/MEC/sky_social_report/app/controllers/socials_controller.rb",
+		"/Users/N/Desktop/MEC/sky_social_report/app/views/socials/index.html.haml",
+		"/Users/N/Desktop/MEC/sky_social_report/app/assets/stylesheets/application.css",
+		"/Users/N/Desktop/MEC/sky_social_report/app/views/layouts/application.html.haml",
+		"/Users/N/Desktop/MEC/sky_social_report/app/views/companies/index.html.haml",
+		"/Users/N/Desktop/MEC/sky_social_report/app/views/socials/disclaimer.html.haml",
+		"/Users/N/Desktop/MEC/sky_social_report/app/assets/javascripts/application.js",
+		"/Users/N/Desktop/MEC/sky_social_report/.git/COMMIT_EDITMSG",
+		"/Users/N/Desktop/MEC/sky_social_report/vendor/assets/javascripts/gauge.js"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"auto",
+			"autocom",
+			"auto_com",
+			"autocom",
+			"  .margins({\n      top: 15,\n      right: 50,\n      bottom: 40,\n      left: 60\n  })",
+			"selectp",
+			"selectpicker",
+			"nothing",
+			"langua",
+			"get",
+			"print",
+			"css/",
+			"/static/",
+			"/js/",
+			"views",
+			"flash",
+			"=0",
+			"badList",
+			"launchQuery",
+			"\n    ",
+			"',\n",
+			"from",
+			"toappe",
+			"flash",
+			"acquire",
+			"acquireTre",
+			"acquireTrend",
+			"acquireTren",
+			"acquireT",
+			"append",
+			"request",
+			"reqyest",
+			"delta",
+			"('en', 'English'), ('it', 'Italian'), ('de', 'Deutsch'), ('nl','Nederlands'), ('sv','Swedish'),('ceb','Cebuano'),('de','German'),('fr', 'French'),('ru', 'Russian'),('es','Spanish')",
+			"date",
+			"datetime",
+			"day.years",
+			"datetime",
+			"date",
+			"date(",
+			"date()",
+			"to",
+			"communityAbsChart",
+			"stack",
+			"twFollowersAbsByDate",
+			"fbPageFansAbsByDate",
+			".stack",
+			"console.log",
+			"reduce",
+			"groupedFbEngagementByDate",
+			"  background-image: linear-gradient(to bottom, #3c3c3c 0%, #222 100%);\n",
+			"setChartWidth",
+			"setChartWidth()",
+			"setChartWidth",
+			"navbar",
+			"p",
+			"260",
+			"gauge",
+			".d3-tip-label-gauge",
+			"d3-tip-label-gauge",
+			"gauge",
+			"width(",
+			"resize",
+			"\"",
+			"colors",
+			"$('.col-md-6').width()",
+			".container",
+			"      dim_prev_day = d[dimension]\n",
+			"createDimensionAbs",
+			"communit",
+			"in_followers_abs",
+			") ",
+			"renderDashboardCharts",
+			"test",
+			"applyangeChart",
+			"    var communityGoalGauge = dc.gaugeChart('#community-goal-chart');\n",
+			"camelCas",
+			"baseMixin",
+			"crossfilter.js"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"// $(\"input#name\").autocomplete({\n//         source: function (request, response) {\n//             var term = request.term;\n//             var restUrl = 'https://it.wikipedia.org/w/api.php?action=query&list=search&srsearch='+term+'&format=json';\n\n//             $.ajax( {\n//                 url: restUrl,\n//                 jsonp: \"callback\",\n//                 dataType: 'jsonp',\n//                 data: {\n//                     action: \"query\",\n//                     list: \"search\",\n//                     srsearch: request.term,\n//                     format: \"json\"\n//                 },\n//                 xhrFields: { withCredentials: true },\n//                 success: function(response) {\n//                   d = response.query.search\n//                     console.log(d[0].title)\n\n//                 }\n//             })\n//           }\n//         });",
+			"import requests\nimport json\nimport datetime\nfrom flask import flash\nimport os, re\n"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "wikilitycs.sublime-project",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 382,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								311,
+								311
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "app/views.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1977,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1975,
+								1975
+							]
+						],
+						"settings":
+						{
+							"auto_complete_triggers":
+							[
+								{
+									"characters": ".",
+									"selector": "source.python - string - comment - constant.numeric"
+								},
+								{
+									"characters": ".",
+									"selector": "source.python - string - constant.numeric"
+								}
+							],
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 26.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.anaconda_documentation":
+	{
+		"height": 110.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "wikilitycs.sublime-project",
+	"replace":
+	{
+		"height": 48.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"custom",
+				"wikilytics/app/static/css/custom.css"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 179.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

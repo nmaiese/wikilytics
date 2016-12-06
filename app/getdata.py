@@ -55,7 +55,7 @@ def getTrends(day=datetime.date.today()-datetime.timedelta(days=1), langs=['en']
         data = []
 
         for lang in langs:
-            url = 'https://wikimedia.org/api/rest_v1/metrics/pageviews/top/'+str(lang)+'.wikipedia/all-access/'+str(day.year)+'/'+str(day.month)+'/'+str(day.day)
+            url = 'https://wikimedia.org/api/rest_v1/metrics/pageviews/top/'+str(lang)+'.wikipedia/all-access/'+str('%02d' % day.year)+'/'+str('%02d' % day.month)+'/'+str('%02d' % day.day)
             response = requests.get(url)
             if response.json().has_key('items'):
                 stats = response.json()['items']
@@ -64,7 +64,7 @@ def getTrends(day=datetime.date.today()-datetime.timedelta(days=1), langs=['en']
                 data += stats[0]['articles']
             else:
                 day=datetime.date.today()-datetime.timedelta(days=2)
-                url = 'https://wikimedia.org/api/rest_v1/metrics/pageviews/top/'+str(lang)+'.wikipedia/all-access/'+str(day.year)+'/'+str(day.month)+'/'+str(day.day)
+                url = 'https://wikimedia.org/api/rest_v1/metrics/pageviews/top/'+str(lang)+'.wikipedia/all-access/'+str('%02d' % day.year)+'/'+str('%02d' % day.month)+'/'+str('%02d' % day.day)
                 response = requests.get(url)
                 if response.json().has_key('items'):
                     stats = response.json()['items']
