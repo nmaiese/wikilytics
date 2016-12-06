@@ -98,4 +98,5 @@ ENV/
 .webassets-cache/
 gen/
 
-
+# Sublime files
+*.sublime-project
