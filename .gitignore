@@ -17,7 +17,6 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
 lib64/
 parts/
 sdist/
@@ -82,7 +81,6 @@ celerybeat-schedule
 
 # virtualenv
 venv/
-venv
 ENV/
 
 # Spyder project settings
@@ -91,8 +89,13 @@ ENV/
 # Rope project settings
 .ropeproject
 
+#pyCharm file
 .idea/
-.idea
 
 .gitignore
+
+#flask asset generated
+.webassets-cache/
+gen/
+
 

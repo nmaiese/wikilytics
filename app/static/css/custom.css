@@ -1,16 +1,35 @@
+body {
+  font-family: 'Lato', sans-serif;
+}
+
 .jumbotron{
   padding-top: 50px;
+}
+
+#dashboard{
+  min-height:350px;
 }
 
 #search-title{
   text-align: center;
   width: 100%
 }
+.navbar-inverse{
+  background: #5bc0de;
+  border:#5bc0de 1px solid;
+}
 
+.navbar-inverse .navbar-nav > li > a {
+    color: #ffffff;
+}
+
+.navbar-inverse .navbar-brand {
+    color: #ffffff;
+}
 
 .form-inline .form-group{
   height: 35px;
-  margin: 0 15px 0px 0;    
+  margin: 0 15px 0px 0;
 }
 
 .form-inline #last-form-group{
@@ -26,7 +45,16 @@
 }
 
 
-input{  
+.bootstrap-tagsinput {
+  border: 0px solid;
+  border-radius: 3px;
+  padding: 7px 10px;
+  box-shadow:none;
+  width:550px;
+  height:35px;
+}
+
+input{
   border: 0px solid;
   border-radius: 3px;
   padding: 0px 10px;
@@ -39,39 +67,70 @@ select{
   background: white;
 }
 
-
+textarea{
+    border: 0px solid;
+    border-radius: 3px;
+    padding: 7px 10px;
+}
 
 input#get{
   height: 35px;
   padding: 0 10px;
   font-size: 14px;
   color:#ffffff;
-  background-color: #009ac9;
+  background-color: #5bc0de;
   -webkit-border-radius: 5px;
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
-
 }
-
 
 input#get:hover {
   background-color: #ffffff;
-  color: #009ac9;
-  border-color: #009ac9;
+  color: #5bc0de;
+  border-color: #5bc0de;
+}
+
+button#reset-all {
+    height: 35px;
+    margin: 7px 0;
+    background: white;
+    -webkit-border-radius: 5px;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+button#reset-all:hover {
+  background-color: #000000;
+  color: white;
+  border-color: #ffffff;
 }
 
 
+.label {
+    font-size: 100%;
+    padding: .2em .6em .3em 0.9em;
+
+}
+
+.bootstrap-tagsinput input {
+    padding: 0px 10px;
+  }
 
 footer{
   color: white;
   height: 70px;
   padding: 20px 10px;
   background-image: linear-gradient(to bottom, #3c3c3c 0%, #222 100%);
-
 }
 
+@media(max-width: 1199px){
 
+  .form-inline .form-group {
+      margin: 0 15px 18px 0;
+  }
+}
 
 @media(max-width: 991px){
   #datarangepicker, #name, #lang {
@@ -81,7 +140,7 @@ footer{
 
   .form-inline .form-group{
     margin-right: 7px;
-    
+
   }
 
   #get{
@@ -90,11 +149,6 @@ footer{
   }
 
 }
-
-
-
-
-
 
 @media(max-width: 767px){
   #datarangepicker, #name, #lang {
@@ -105,7 +159,20 @@ footer{
 
   .form-inline .form-group{
     height: 35px;
-    margin: 0 0px 15px 0;    
+    margin: 0 0px 15px 0;
+  }
+
+  .form-inline .form-group .btn-group.bootstrap-select{
+    width: 100%;
+    text-align: center;
+  }
+
+  .dropdown-menu > li > a:hover, .dropdown-menu > li > a{
+    text-align: center;
+  }
+
+  .bootstrap-tagsinput {
+    width:100%;
   }
 
 }
