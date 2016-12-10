@@ -37,7 +37,7 @@ def index():
     form = ReusableForm(request.form)
     trendForm = TrendsForm(request.form)
 
-    name = 'All the form fields are required. '
+    name = 'Choose articles or get trends'
     data = []
     form_input = name
 
