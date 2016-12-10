@@ -73,14 +73,15 @@ def getTrends(day=datetime.date.today()-datetime.timedelta(days=1), langs=['en']
                     data += stats[0]['articles']
 
             toremove = []
-            for b in badList:
-                for d in data:
+            for d in data:
+                for b in badList:
                     if b in d['article']:
                         d['lang'] = lang
-                        toremove.append(d)
-                    d['lang'] = lang
-
+                        if d not in toremove: toremove.append(d)
+                    else:
+                        d['lang'] = lang
             for t in toremove:
+                print t
                 data.remove(t)
 
         return data, day, response.content
