@@ -187,7 +187,9 @@ var colorScale = d3.scale.ordinal()
         })
         .x(d3.time.scale().domain([minDate, maxDate]))
         .renderHorizontalGridLines(true)
+        .elasticY(true)
         .brushOn(false);
+
 
         compose = []
 

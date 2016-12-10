@@ -5,7 +5,7 @@
 ('/', 'home', 'Home'),
 ] -%}
 
-w{% set active_page = active_page|default('index') -%}
+{% set active_page = active_page|default('index') -%}
 
 {% block navbar %}
 

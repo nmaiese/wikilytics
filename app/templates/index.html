@@ -4,7 +4,7 @@
 <div class="jumbotron">
     <div class="container">
         <h1>Wikilyitics</h1>
-        <p>Get data and visualize page views of wikipedia articles</p>
+        <h2>Get data and visualize page views of wikipedia articles</h2>
         <form class='form-inline' action='.' method='post' id='data-form'>
             <div class='form-group'>
                 {{ form.name(size="60")}}
@@ -19,7 +19,7 @@
                 {{ form.dataBtn(id="get", class="btn") }}
             </div>
         </form>
-        <p>Or get last trends for selected language</p>
+        <h2>Or get last trends for selected language</h2>
         <form class='form-inline' action='.' method='post' id='trendForm'>
                 <div class='form-group'>
                     {{ trendForm.languages(id="languages", class="selectpicker", title="Select Languages" )}}
@@ -36,9 +36,9 @@
         <div class="col-lg-12">
             {% if name %}
                {% if data != '[]' %}
-                    <div id="search-title"><h2>{{ name }}</h2></div>
+                    <div class="search-title"><h2>{{ name }}</h2></div>
                 {% else %}
-                    <div id="search-title"><h2>No data for: {{ name }} :( </h2></div>
+                    <div class="search-title"><h2>No data for: {{ name }} :( </h2></div>
                 {% endif %}
             {% endif %}
         </div>

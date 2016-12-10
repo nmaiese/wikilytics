@@ -136,7 +136,7 @@ def acquireTrends(langs=['en']):
     query_list = query_list[:-1]
     query_title = query_title[:-2]
     end = datetime.datetime.today()
-    start = end - datetime.timedelta(days=10)
+    start = end - datetime.timedelta(days=7)
 
     startDate = str('%02d' % start.year)+str('%02d' % start.month)+str('%02d' % start.day)
     endDate =  str('%02d' % end.year)+str('%02d' % end.month)+str('%02d' % end.day)
