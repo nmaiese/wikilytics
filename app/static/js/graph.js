@@ -88,6 +88,7 @@ function renderDashboardCharts(data, query){
     articles = viewsByArticle.top(Infinity)
     articles_views_key = []
     articles.forEach(function(d){
+      d.key = d.key.replace(/_/g," ")
       colorDomain.push(d.key)
       articles_views_key.push(removeSpecial(d.key)+'views')
     })
@@ -197,7 +198,6 @@ var colorScale = d3.scale.ordinal()
             compose.push(dc.lineChart(viewsMultipleLineChart).group(this[articles_views_key[i] +'byDate'], articles[i].key).colors(function(d) {return colorScale(d)}))}
 
       viewsMultipleLineChart.compose(compose).rangeChart(viewsBarChart)
-//    .legend(dc.legend().x(60).y(265).autoItemWidth(true).gap(10).horizontal(true));
       .legend(dc.legend().x(70).y(30).autoItemWidth(true).gap(10))
       .colors(function(d) {
         return colorScale(d)

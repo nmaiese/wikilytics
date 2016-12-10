@@ -64,14 +64,14 @@ function addAutocomplete(){
 }
 
 function composeLinechartTooltip(d){
-  return "<strong>" + d.layer + "</strong> <br/> " +
+  return "<strong>" + d.layer.replace(/_/g," ") + "</strong> <br/> " +
    numberFormat(d.data.value) + "<br/>" +
    formatDate(d.data.key)
 
 }
 
 function composeBarchartTooltip(d){
-  return "<strong>" + d.layer + "</strong> <br/> " +
+  return "<strong>" + d.layer.replace(/_/g," ") + "</strong> <br/> " +
    numberFormat(d.y) + "<br/>" +
    formatDate(d.data.key)
 }
