@@ -12,12 +12,12 @@ from flask_admin.form.widgets import DatePickerWidget
 class ReusableForm(Form):
     name = TextField(validators=[validators.required()])
     date = TextField('Start', default='Select date', validators=[validators.required()])
-    languages = SelectMultipleField('Languages', choices=[('en', 'English'), ('it', 'Italian'), ('nl','Nederlands'), ('sv','Swedish'),('ceb','Cebuano'),('de','German'),('fr', 'French'),('ru', 'Russian'),('es','Spanish')], validators=[validators.required()])
+    languages = SelectMultipleField('Languages', choices=[('en', 'English'), ('it', 'Italian'),('de','German'),('fr', 'French'),('es','Spanish')], validators=[validators.required()])
     dataBtn = SubmitField(label='Get Data')
 
 
 class TrendsForm(Form):
-    languages = SelectField('Languages', choices=[('en', 'English'), ('it', 'Italian'), ('nl','Nederlands'), ('sv','Swedish'),('ceb','Cebuano'),('de','German'),('fr', 'French'),('ru', 'Russian'),('es','Spanish')], validators=[validators.required()])
+    languages = SelectField('Languages', choices=[('en', 'English'), ('it', 'Italian'),('de','German'),('fr', 'French'),('es','Spanish')], validators=[validators.required()])
     trendBtn = SubmitField(label='Get Last Trends')
 
 
@@ -25,11 +25,11 @@ class TrendsForm(Form):
 @app.route('/index')
 def index():
 
-    supported_languages = ['en','it','de','nl','sv','ceb','fr','ru','es']
+    supported_languages = ['en','it','de','fr','es']
     langs = []
     langs.append(request.accept_languages.best_match(supported_languages))
     if langs == [] or not langs or langs == [None]:
-        langs = ['it']
+        langs = ['en']
 
 
     form = ReusableForm(request.form)
