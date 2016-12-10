@@ -1,11 +1,21 @@
 $('input#name').attr('data-role','tagsinput')
 $("input#name").val();
 
+$('#data-form').on('keyup keypress', function(e) {
+  var keyCode = e.keyCode || e.which;
+  if (keyCode === 13) {
+    e.preventDefault();
+    return false;
+  }
+});
+
+
 function datePickerSet(start, end) {
   $( function() {
       $( ".datepicker" ).datepicker();
   } );
-  $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+
+  $('input#datarangepicker').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
   $('input#datarangepicker').daterangepicker({
     startDate: start,
     endDate: end,

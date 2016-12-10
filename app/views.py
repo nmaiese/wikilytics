@@ -10,7 +10,7 @@ import datetime
 from flask_admin.form.widgets import DatePickerWidget
 
 class ReusableForm(Form):
-    name = TextAreaField(validators=[validators.required()])
+    name = TextField(validators=[validators.required()])
     date = TextField('Start', default='Select date', validators=[validators.required()])
     languages = SelectMultipleField('Languages', choices=[('en', 'English'), ('it', 'Italian'), ('nl','Nederlands'), ('sv','Swedish'),('ceb','Cebuano'),('de','German'),('fr', 'French'),('ru', 'Russian'),('es','Spanish')], validators=[validators.required()])
     dataBtn = SubmitField(label='Get Data')
@@ -25,20 +25,18 @@ class TrendsForm(Form):
 @app.route('/index')
 def index():
 
-    # supported_languages = ['en','it','de','nl','sv','ceb','fr','ru','es']
-    # langs = []
-    # langs.append(request.accept_languages.best_match(supported_languages))
-    # if langs == [] or not langs or langs == [None]:
-    #     langs = ['it']
+    supported_languages = ['en','it','de','nl','sv','ceb','fr','ru','es']
+    langs = []
+    langs.append(request.accept_languages.best_match(supported_languages))
+    if langs == [] or not langs or langs == [None]:
+        langs = ['it']
+
 
     form = ReusableForm(request.form)
     trendForm = TrendsForm(request.form)
 
-    name = 'All the form fields are required'
-    data = []
-    form_input = name
 
-    #data, form_input, name = getdata.acquireTrends(langs)
+    data, form_input, name = getdata.acquireTrends(langs)
 
 
     if trendForm.validate() and trendForm.trendBtn.data:
@@ -62,6 +60,7 @@ def index():
             endDate = e[-4:]+e[1:3]+e[3:5]
             form_input = name
             data, errors = getdata.launchQuery(name, startDate, endDate, langs)
+            name = name.replace(",", " - ")
         else:
             name = 'All the form fields are required'
             data = []
