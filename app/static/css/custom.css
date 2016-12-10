@@ -201,11 +201,23 @@ button#reset-all:hover {
   }
 
 footer{
+
   color: white;
   height: 70px;
   padding: 20px 10px;
-  background-image: linear-gradient(to bottom, #3c3c3c 0%, #222 100%);
+  background: black;
 }
+
+
+footer a{
+  color: grey;
+}
+
+
+footer a:hover{
+  color: #5bc0de;
+}
+
 
 @media(max-width: 1199px){
 

@@ -179,7 +179,7 @@ var colorScale = d3.scale.ordinal()
 
     viewsMultipleLineChart
         .width(null)
-        .height(500)
+        .height(450)
         .margins({
             top: 15,
             right: 50,
