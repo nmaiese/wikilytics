@@ -13,7 +13,7 @@ badList = [
     u'Categoria:',
     u'Especial:',
     u'Wikipedia:',
-    u'Spezial:'
+    u'Spezial:',
     u'Main_Page',
     u'Portada',
     u'Hauptseite',
@@ -81,7 +81,6 @@ def getTrends(day=datetime.date.today()-datetime.timedelta(days=1), langs=['en']
                     d['lang'] = lang
 
             for t in toremove:
-                print t
                 data.remove(t)
 
         return data, day, response.content
