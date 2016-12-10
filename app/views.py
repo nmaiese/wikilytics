@@ -37,7 +37,7 @@ def index():
     form = ReusableForm(request.form)
     trendForm = TrendsForm(request.form)
 
-    name = 'Choose articles or get trends'
+    name = 'All the form fields are required'
     data = []
     form_input = name
 
@@ -48,31 +48,25 @@ def index():
         if trendForm.validate():
             langs =  [trendForm.languages.data]
             data, form_input, name = getdata.acquireTrends(langs)
-
-
         else:
-            name = 'All the form fields are required. '
+            name = 'All the form fields are required'
             data = []
 
 
     if form.validate() and form.dataBtn.data:
 
         if form.validate():
-
             start, end = request.form['date'].split("-")
             name = request.form['name']
             langs =  form.languages.data
             s = start.replace("/", "")
             e = end.replace("/", "")
-
             startDate = s[-5:-1]+s[:2]+s[2:4]
             endDate = e[-4:]+e[1:3]+e[3:5]
-
             form_input = name
             data, errors = getdata.launchQuery(name, startDate, endDate, langs)
-
         else:
-            name = 'All the form fields are required. '
+            name = 'All the form fields are required'
             data = []
 
     return render_template('index.html', form=form, trendForm=trendForm, data=data, name=name.replace('_',' '), query=form_input)
