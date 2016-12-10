@@ -5,7 +5,7 @@
     <div class="container">
         <h1>Wikilyitics</h1>
         <p>Get data and visualize page views of wikipedia articles</p>
-        <form class='form-inline' action='.' method='post' >
+        <form class='form-inline' action='.' method='post' id='data-form'>
             <div class='form-group'>
                 {{ form.name(size="60")}}
             </div>
@@ -15,22 +15,20 @@
             <div class='form-group'>
                 {{ form.languages(id="languages", class="selectpicker", title="Select Languages" )}}
             </div>
-            <div class='form-group' id='last-form-group'>
+            <div class='form-group' class='last-form-group'>
                 {{ form.dataBtn(id="get", class="btn") }}
             </div>
         </form>
-    </div>
-    <div class='container'>
+        <p>Or get last trends for selected language</p>
         <form class='form-inline' action='.' method='post' id='trendForm'>
                 <div class='form-group'>
                     {{ trendForm.languages(id="languages", class="selectpicker", title="Select Languages" )}}
                 </div>
-                <div class='form-group' id='last-form-group'>
-                    {{ trendForm.trendBtn(id="getTrend", class="btn") }}
+                <div class='form-group' class='last-form-group'>
+                    {{ trendForm.trendBtn(id="get", class="btn") }}
                 </div>
         </form>
     </div>
-
 
 </div>
 <div class="container" id="container-dashbaord">

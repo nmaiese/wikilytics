@@ -10,6 +10,10 @@ body {
   min-height:350px;
 }
 
+.jumbotron > .container > h1{
+    margin-bottom: 25px;
+}
+
 #search-title{
   text-align: center;
   width: 100%
@@ -32,8 +36,12 @@ body {
   margin: 0 15px 0px 0;
 }
 
-.form-inline #last-form-group{
+.form-inline .last-form-group{
   margin-right: 0px;
+}
+
+#data-form{
+    margin-bottom: 20px;
 }
 
 #datarangepicker, #name, #lang, #get {
