@@ -9,6 +9,8 @@ import urllib
 badList = [
     u'Pagina_principale',
     u'Special:',
+    u'Speciale:',
+    u'Categoria:',
     u'Especial:',
     u'Wikipedia:',
     u'Spezial:'
