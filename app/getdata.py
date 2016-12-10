@@ -14,19 +14,11 @@ badList = [
     u'Especial:',
     u'Wikipedia:',
     u'Spezial:'
-    u'Speciale:Ricerca',
-    u'Speciale:CercaCollegamenti',
-    u'Speciale:Entra',
-    u'Speciale:Libro',
-    u'Speciale:CreaUtenza',
     u'Main_Page',
-    u'Special:Search',
     u'Portada',
-    u'Especial:Buscar',
     u'Hauptseite',
-    u'Spezial:Suche',
-    u'Wikip\xe9dia:Accueil_principal',
-    u'Fran\xe7ois_Fillon'
+    u'Spezial:',
+    u'Wikip\xe9dia:'
 ]
 
 def getViews(query):
@@ -80,14 +72,17 @@ def getTrends(day=datetime.date.today()-datetime.timedelta(days=1), langs=['en']
                         s['project'] = stats[0]['project']
                     data += stats[0]['articles']
 
-
+            toremove = []
             for b in badList:
                 for d in data:
                     if b in d['article']:
-                        print d
-                        data.remove(d)
-
+                        d['lang'] = lang
+                        toremove.append(d)
                     d['lang'] = lang
+
+            for t in toremove:
+                print t
+                data.remove(t)
 
         return data, day, response.content
 
