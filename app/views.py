@@ -10,7 +10,7 @@ import datetime
 from flask_admin.form.widgets import DatePickerWidget
 
 class ReusableForm(Form):
-    name = TextField(validators=[validators.required()])
+    name = TextAreaField(validators=[validators.required()])
     date = TextField('Start', default='Select date', validators=[validators.required()])
     languages = SelectMultipleField('Languages', choices=[('en', 'English'), ('it', 'Italian'), ('nl','Nederlands'), ('sv','Swedish'),('ceb','Cebuano'),('de','German'),('fr', 'French'),('ru', 'Russian'),('es','Spanish')], validators=[validators.required()])
     dataBtn = SubmitField(label='Get Data')
@@ -19,9 +19,6 @@ class ReusableForm(Form):
 class TrendsForm(Form):
     languages = SelectField('Languages', choices=[('en', 'English'), ('it', 'Italian'), ('nl','Nederlands'), ('sv','Swedish'),('ceb','Cebuano'),('de','German'),('fr', 'French'),('ru', 'Russian'),('es','Spanish')], validators=[validators.required()])
     trendBtn = SubmitField(label='Get Last Trends')
-
-
-
 
 
 @app.route('/', methods=['GET', 'POST'])

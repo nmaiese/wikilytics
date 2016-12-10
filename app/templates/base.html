@@ -49,9 +49,8 @@
 
             data = {{ data|tojson|safe }}
             query =  '{{ query }}'
-
-            fromDataToCharts(data, query);
-
+            if data != []
+                fromDataToCharts(data, query);
             var start = moment().subtract(29, 'days');
             var end = moment();
 
