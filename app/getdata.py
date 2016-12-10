@@ -82,7 +82,6 @@ def getTrends(day=datetime.date.today()-datetime.timedelta(days=1), langs=['en']
                     else:
                         d['lang'] = lang
             for t in toremove:
-                print t
                 data.remove(t)
 
         return data, day, response.content
