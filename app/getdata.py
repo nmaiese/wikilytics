@@ -19,7 +19,7 @@ badList = [
     u'Hauptseite',
     u'Spezial:',
     u'Wikip\xe9dia:',
-    u'Sp\xe9cial
+    u'Sp\xe9cial'
 ]
 
 def getViews(query):
