@@ -123,6 +123,7 @@ def acquireTrends(langs=['en']):
     i = 0
 
     for d in trends:
+
         query_list += ((d['article'])+',')
         query_title += ((d['article'])+' - ')
         article = ''.join(e for e in d['article'] if e.isalnum())
@@ -146,5 +147,4 @@ def acquireTrends(langs=['en']):
         flash(errors)
     data += toappend
     return data, query_list, query_title
-
 

@@ -1,7 +1,7 @@
 from flask import render_template, flash, request
 from app import app
 from flask import request
-from wtforms import Form, validators, TextField, SelectField, TextAreaField, SelectMultipleField
+from wtforms import Form, validators, TextField, SelectField, TextAreaField, SelectMultipleField, SubmitField
 from wtforms.fields.html5 import DateField
 from wtforms_components import DateIntervalField, DateRange
 from app import getdata
@@ -13,23 +13,49 @@ class ReusableForm(Form):
     name = TextField(validators=[validators.required()])
     date = TextField('Start', default='Select date', validators=[validators.required()])
     languages = SelectMultipleField('Languages', choices=[('en', 'English'), ('it', 'Italian'), ('nl','Nederlands'), ('sv','Swedish'),('ceb','Cebuano'),('de','German'),('fr', 'French'),('ru', 'Russian'),('es','Spanish')], validators=[validators.required()])
+    dataBtn = SubmitField(label='Get Data')
+
+
+class TrendsForm(Form):
+    languages = SelectField('Languages', choices=[('en', 'English'), ('it', 'Italian'), ('nl','Nederlands'), ('sv','Swedish'),('ceb','Cebuano'),('de','German'),('fr', 'French'),('ru', 'Russian'),('es','Spanish')], validators=[validators.required()])
+    trendBtn = SubmitField(label='Get Last Trends')
+
+
+
 
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index')
 def index():
 
-    supported_languages = ['en','it','de','nl','sv','ceb','fr','ru','es']
-    langs = []
-    langs.append(request.accept_languages.best_match(supported_languages))
-    if langs == [] or not langs or langs == [None]:
-        langs = ['it']
+    # supported_languages = ['en','it','de','nl','sv','ceb','fr','ru','es']
+    # langs = []
+    # langs.append(request.accept_languages.best_match(supported_languages))
+    # if langs == [] or not langs or langs == [None]:
+    #     langs = ['it']
 
     form = ReusableForm(request.form)
+    trendForm = TrendsForm(request.form)
 
-    data, form_input, name = getdata.acquireTrends(langs)
+    name = 'All the form fields are required. '
+    data = []
+    form_input = name
 
-    if request.method == 'POST':
+    #data, form_input, name = getdata.acquireTrends(langs)
+
+
+    if trendForm.validate() and trendForm.trendBtn.data:
+        if trendForm.validate():
+            langs =  [trendForm.languages.data]
+            data, form_input, name = getdata.acquireTrends(langs)
+
+
+        else:
+            name = 'All the form fields are required. '
+            data = []
+
+
+    if form.validate() and form.dataBtn.data:
 
         if form.validate():
 
@@ -45,13 +71,8 @@ def index():
             form_input = name
             data, errors = getdata.launchQuery(name, startDate, endDate, langs)
 
-            if not data:
-                flash("No data, retry")
-                flash(errors)
         else:
             name = 'All the form fields are required. '
             data = []
-    return render_template('index.html', form=form, data=data, name=name.replace('_',' '), query=form_input)
 
-
-
+    return render_template('index.html', form=form, trendForm=trendForm, data=data, name=name.replace('_',' '), query=form_input)
