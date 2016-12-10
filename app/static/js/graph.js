@@ -88,7 +88,6 @@ function renderDashboardCharts(data, query){
     articles = viewsByArticle.top(Infinity)
     articles_views_key = []
     articles.forEach(function(d){
-      d.key = d.key.replace(/_/g," ")
       colorDomain.push(d.key)
       articles_views_key.push(removeSpecial(d.key)+'views')
     })

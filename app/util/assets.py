@@ -12,7 +12,7 @@ bundles = {
         'css/lib/d3-tooltips.css',
         'css/lib/bootstrap-tagsinput.css',
         'css/custom.css',
-        output='gen/css.css'),
+        output='css/css.css'),
 
     'dashboard_js': Bundle(
         'js/lib/jquery-3.1.1.min.js',
@@ -30,7 +30,7 @@ bundles = {
         'js/responsive.js',
         'js/graph.js',
         'js/dashboard.js',
-        output='gen/javascript.js'),
+        output='js/javascript.js'),
 }
 
 

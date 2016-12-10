@@ -98,6 +98,7 @@ function fromDataToCharts(data, query){
     setChartWidth();
     dc.renderAll();
   });
+  addArticlesDesc()
 }
 
 function rangesEqual(range1, range2) {
@@ -153,3 +154,28 @@ function applyRangeChart(rangeChart, chartlist){
   };
   rangeChart.focusCharts(chartlist);
 }
+
+function addArticlesDesc(){
+    var i = 0
+    articles_desc.forEach(function(d){
+        $link = $('<a href="'+d['url']+'" target="_blank"></a>')
+        if (i >= 3){ $col= $('<div class="col-md-6"></div>')}
+        else{ $col = $('<div class="col-md-4"></div>')}
+        if (i==0 | i==3){ $row = $('<div class="row"></div>') }
+        title = '<h4>'+d['title']+'</h4>'
+        $article = $('<div class="article"></div>')
+        image = '<img src="'+d['image'].replace("//","https://")+'" />'
+        desc = '<p>'+d['description']+'</p>'
+        i++
+
+        $('#wikipedia-results').append($row.append($col.append($link.append($article.append(title, image, desc)))))
+    })
+}
+
+
+
+
+
+
+
+

@@ -1,9 +1,16 @@
 body {
   font-family: 'Lato', sans-serif;
+  background: #eeeeee;
 }
 
 .jumbotron{
   padding-top: 50px;
+  margin-bottom: 0;
+}
+
+#container-dashbaord{
+    background:white;
+    border-radius:25px;
 }
 
 #dashboard{
@@ -199,6 +206,53 @@ button#reset-all:hover {
 .bootstrap-tagsinput input {
     padding: 0px 10px;
   }
+
+
+
+div#wikipedia-results {
+    margin-top: 30px;
+    margin-bottom: 45px;
+    padding: 0px;
+}
+
+#wikipedia-results .article {
+    padding: 15px;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+#wikipedia-results h4 {
+    display: inline-block;
+    margin-top:0;
+}
+
+#wikipedia-results img {
+
+    max-width: 175px;
+    border-radius: 5px;
+    text-align: center;
+    margin: 0 10px 0px 0;
+    float: left;
+
+}
+
+#wikipedia-results a {
+    text-decoration:none;
+    color: black;
+}
+
+#wikipedia-results a:hover {
+    text-decoration:none;
+    color: black;
+}
+
+
+#wikipedia-results .article:hover {
+    background: white;
+}
+
+
+
 
 footer{
 

@@ -37,12 +37,14 @@ def index():
 
 
     data, form_input, name = getdata.acquireTrends(langs)
+    articles_desc = getdata.enrichArticles(form_input.split(','), langs[0])
 
 
     if trendForm.validate() and trendForm.trendBtn.data:
         if trendForm.validate():
             langs =  [trendForm.languages.data]
             data, form_input, name = getdata.acquireTrends(langs)
+            articles_desc = getdata.enrichArticles(form_input.split(','), langs[0])
         else:
             name = 'All the form fields are required'
             data = []
@@ -60,9 +62,10 @@ def index():
             endDate = e[-4:]+e[1:3]+e[3:5]
             form_input = name
             data, errors = getdata.launchQuery(name, startDate, endDate, langs)
+            articles_desc = getdata.enrichArticles(name.split(','), langs[0])
             name = name.replace(",", " - ")
         else:
             name = 'All the form fields are required'
             data = []
 
-    return render_template('index.html', form=form, trendForm=trendForm, data=data, name=name.replace('_',' '), query=form_input)
+    return render_template('index.html', form=form, trendForm=trendForm, data=data, name=name.replace('_',' '), query=form_input, articles_desc=articles_desc)

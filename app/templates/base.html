@@ -48,6 +48,7 @@
         <script>
 
             data = {{ data|tojson|safe }}
+            articles_desc = {{ articles_desc|tojson|safe }}
             query =  '{{ query }}'
             if (data != []){
                 fromDataToCharts(data, query);

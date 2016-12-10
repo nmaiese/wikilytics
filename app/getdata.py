@@ -3,6 +3,8 @@ import json
 import datetime
 from flask import flash
 import os, re
+from bs4 import BeautifulSoup
+import urllib
 
 badList = [
     u'Pagina_principale',
@@ -148,3 +150,15 @@ def acquireTrends(langs=['en']):
     data += toappend
     return data, query_list, query_title
 
+
+def enrichArticles(articles, lang):
+    object_articles = []
+    for article in articles:
+        url = 'https://'+lang+'.wikipedia.org/wiki/'+article;
+        content = urllib.urlopen(url).read()
+        page = BeautifulSoup(content, "html.parser")
+        title = page.find('h1', id="firstHeading").text
+        description = page.find('div', id="bodyContent").find('p').text
+        image = page.find('div', id="bodyContent").find('img')['src']
+        object_articles.append({'title':title, 'url':url, 'image':image, 'description':description})
+    return object_articles
