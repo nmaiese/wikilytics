@@ -8,6 +8,10 @@ import urllib
 
 badList = [
     u'Pagina_principale',
+    u'Special:',
+    u'Especial:',
+    u'Wikipedia:',
+    u'Spezial:'
     u'Speciale:Ricerca',
     u'Speciale:CercaCollegamenti',
     u'Speciale:Entra',
@@ -77,7 +81,7 @@ def getTrends(day=datetime.date.today()-datetime.timedelta(days=1), langs=['en']
 
             for b in badList:
                 for d in data:
-                    if b in d.values(): data.remove(d)
+                    if b in d['article']: data.remove(d)
                     d['lang'] = lang
 
         return data, day, response.content
@@ -154,7 +158,7 @@ def acquireTrends(langs=['en']):
 def enrichArticles(articles, lang):
     object_articles = []
     for article in articles:
-        url = 'https://'+lang+'.wikipedia.org/wiki/'+article;
+        url = ('https://'+lang+'.wikipedia.org/wiki/'+article).encode('utf8')
         content = urllib.urlopen(url).read()
         page = BeautifulSoup(content, "html.parser")
         title = page.find('h1', id="firstHeading").text
