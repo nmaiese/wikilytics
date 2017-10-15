@@ -91,6 +91,7 @@ ENV/
 
 #pyCharm file
 .idea/
+.venv/ 
 
 .gitignore
 

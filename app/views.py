@@ -1,11 +1,11 @@
-from flask import render_template, flash, request
+from flask import render_template, flash, request, send_from_directory
 from app import app
 from flask import request
 from wtforms import Form, validators, TextField, SelectField, TextAreaField, SelectMultipleField, SubmitField
 from wtforms.fields.html5 import DateField
 from wtforms_components import DateIntervalField, DateRange
 from app import getdata
-import json
+import json, os
 import datetime
 from flask_admin.form.widgets import DatePickerWidget
 
@@ -71,3 +71,11 @@ def index():
             data = []
 
     return render_template('index.html', form=form, trendForm=trendForm, data=data, name=name.replace('_',' '), query=form_input, articles_desc=articles_desc)
+
+
+
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'),
+                               'favicon.ico', mimetype='image/vnd.microsoft.icon')
+

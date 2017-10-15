@@ -25,11 +25,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="nav navbar-nav">
-                {% for href, id, caption in navigation_bar %}
-                <li{% if id == active_page %} class="active"{% endif %}>
-                    <a href="{{ href|e }}">{{ caption|e }}</a>
-                </li>
-                {% endfor %}
+                <li><a href="http://aniellomaiese.it" target="blank">aniellomaiese.it</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <button id="reset-all" class="rnav-btn btn" onclick="javascript:dc.filterAll(); dc.renderAll();drawtips();">Reset Me</button>
